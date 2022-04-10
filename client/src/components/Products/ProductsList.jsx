@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Product from './Product';
 import ProductsFilter from './ProductsFilter';
+import PetFilter from './PetFilter';
 import './ProductSection.css';
 
 class ProductsList extends Component {
@@ -55,7 +56,9 @@ class ProductsList extends Component {
 
     return (
       <div className="container">
+        <PetFilter/>  
         <ProductsFilter handleSearch={this.handleSearch} handleSelect={this.handleSelect} />
+
         <section className="products-section">
           {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
           {productsList}
