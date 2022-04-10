@@ -152,3 +152,16 @@
   cursor: pointer;
   margin-bottom: 1.2rem;
 }
+
+.btn-add-product {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  margin-bottom: 1.2rem;
+  background-color: green;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
