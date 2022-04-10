@@ -7,6 +7,7 @@ import './ProductSection.css';
 class ProductsList extends Component {
   state = {
     products: [],
+    filteredProducts: [],
   };
 
   componentDidMount() {
@@ -14,15 +15,32 @@ class ProductsList extends Component {
       .then(res => res.json())
       .then(data => this.setState({products: data.products}));
   }
-  render() {
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.products !== this.state.products) {
+      this.setState({filteredProducts: this.state.products});
+    }
+  }
+
+  handleSearch = event => {
+    const searchValue = event.target.value.toLowerCase();
     const {products} = this.state;
-    const productsList = products.map(product => (
+    const filteredProducts = products.filter(product => {
+      return product.name.toLowerCase().includes(searchValue);
+    });
+    this.setState({filteredProducts});
+  };
+
+  render() {
+    const {filteredProducts} = this.state;
+    const productsList = filteredProducts.map(product => (
       <Product key={product.id} product={product} />
     ));
+
     return (
       <div className="container">
         <PetFilter/>
-        <ProductsFilter />
+        <ProductsFilter handleSearch={this.handleSearch} />
         <section className="products-section">
           {this.state.products.length === 0 && <h1>No Products Found</h1>}
           {productsList}
