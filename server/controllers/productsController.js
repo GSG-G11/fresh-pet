@@ -9,7 +9,13 @@ const getAllProducts = async (req, res) => {
     products: products.rows,
   });
 };
+const deleteProduct = async (req, res) => {
+  const { id } = req.params
+  await connection.query(queries.deleteProductQuery, [id])
+  res.status(204).json({msg:'deleted item successfully'})
+}
 
 module.exports = {
   getAllProducts,
+  deleteProduct,
 };
