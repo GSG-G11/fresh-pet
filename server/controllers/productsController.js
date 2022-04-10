@@ -20,6 +20,22 @@ const deleteProduct = async (req, res) => {
   res.status(204).json({ msg: 'deleted item successfully' });
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name, description, pet_category, sub_category, price, image } =
+    req.body;
+  await connection.query(queries.updateProductQuery, [
+    name,
+    description,
+    pet_category,
+    sub_category,
+    price,
+    image,
+    id,
+  ]);
+  res.status(200).json({ msg: 'item updatad successfully' });
+};
+
 const createProduct = (
   { body: { name, description, petCategory, subCategory, price, image } },
   res,
@@ -69,4 +85,5 @@ module.exports = {
   getAllProducts,
   createProduct,
   deleteProduct,
+  updateProduct,
 };
