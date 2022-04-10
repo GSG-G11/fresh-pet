@@ -10,16 +10,17 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Switch>
         <div>
           <Header />
           <LandingImage />
-          <Switch>
-            <Route path="/product/:id" component={ProductDetails} />
-            <Route path="/notFound" component={NotFound} />
-            <Route path="/" component={ProductsList} exact />
-            <Redirect to="notFound" />
-          </Switch>
+          <ProductsList />
         </div>
+          <Route path="/product/:id" component={ProductDetails} />
+          <Route path="/notFound" component={NotFound} />
+          <Route path="/" component={ProductsList} exact />
+          <Redirect to="notFound" />
+        </Switch>
       </BrowserRouter>
     );
   }

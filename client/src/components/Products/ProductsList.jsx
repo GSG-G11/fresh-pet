@@ -26,6 +26,19 @@ class ProductsList extends Component {
     }
   }
 
+  
+  handlePetSelection = (pet) => {
+    if (pet === 'all') {
+      this.setState({filteredProducts: this.state.products});
+      return;
+    }
+    const {products} = this.state;
+    const filteredProducts = products.filter(product => {
+      return (product.pet_category === pet);
+    });
+    this.setState({filteredProducts});
+  };
+
   handleSearch = event => {
     const searchValue = event.target.value.toLowerCase();
     const {products} = this.state;
@@ -35,7 +48,8 @@ class ProductsList extends Component {
     this.setState({filteredProducts});
   };
 
-  handleSelect = event => {
+
+  handleSelect = (event) => {
     const selectValue = event.target.value.toLowerCase();
     if (selectValue === 'all') {
       this.setState({filteredProducts: this.state.products});
@@ -43,7 +57,7 @@ class ProductsList extends Component {
     }
     const {products} = this.state;
     const filteredProducts = products.filter(product => {
-      return product.sub_category === selectValue;
+      return (product.sub_category === selectValue);
     });
     this.setState({filteredProducts});
   };
@@ -53,10 +67,9 @@ class ProductsList extends Component {
     const productsList = filteredProducts.map(product => (
       <Product key={product.id} product={product} />
     ));
-
     return (
       <div className="container">
-        <PetFilter/>  
+        <PetFilter handlePetSelection={this.handlePetSelection}/>  
         <ProductsFilter handleSearch={this.handleSearch} handleSelect={this.handleSelect} />
 
         <section className="products-section">
