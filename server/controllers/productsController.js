@@ -10,6 +10,13 @@ const getAllProducts = async (req, res) => {
   });
 };
 
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  await connection.query(queries.deleteProductQuery, [id]);
+  res.status(201).json({ msg: 'deleted product succes' });
+};
+
 module.exports = {
   getAllProducts,
+  deleteProduct,
 };
