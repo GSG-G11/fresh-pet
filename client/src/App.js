@@ -13,14 +13,13 @@ class App extends Component {
         <div>
           <Header />
           <LandingImage />
-          <ProductsList />
+          <Switch>
+            <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/notFound" component={NotFound} />
+            <Route path="/" component={ProductsList} exact />
+            <Redirect to="notFound" />
+          </Switch>
         </div>
-        <Switch>
-          <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/notFound" component={NotFound} />
-          <Route path="/" component={ProductsList} exact />
-          <Redirect to="notFound" />
-        </Switch>
       </BrowserRouter>
     );
   }

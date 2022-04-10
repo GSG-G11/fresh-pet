@@ -3,11 +3,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-/* .container {
-  margin: 0 auto;
-  text-align: center;
-  padding: 3.2rem 12.8rem;
-} */
 
 .inputs-section {
   display: flex;
@@ -32,11 +27,12 @@
 }
 
 .products-section {
-  margin-top: 1rem;
+  margin-top: 3.2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  grid-gap: 1.5rem;
+  grid-gap: 3.8rem;
   text-align: center;
+  padding-bottom: 3.2rem;
 }
 
 .card {
@@ -114,8 +110,8 @@
 
 .delete-btn {
   position: absolute;
-  right: -3%;
-  top: -3%;
+  right: -4%;
+  top: -2%;
   font-size: 1.2rem;
   padding: 0.4rem 0.8rem;
   border: none;
