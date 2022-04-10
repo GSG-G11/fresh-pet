@@ -22,6 +22,7 @@ const deleteProduct = async (req, res) => {
   res.status(204).json({ msg: 'deleted item successfully' });
 };
 
+<<<<<<< HEAD
 // we must validate the data before we update the product
 const updateProduct = (
   {
@@ -70,6 +71,22 @@ const updateProduct = (
         next(error);
       }
     });
+=======
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name, description, pet_category, sub_category, price, image } =
+    req.body;
+  await connection.query(queries.updateProductQuery, [
+    name,
+    description,
+    pet_category,
+    sub_category,
+    price,
+    image,
+    id,
+  ]);
+  res.status(200).json({ msg: 'item updatad successfully' });
+>>>>>>> d77c09e6943f3aba6a5ec2fce8da094f4d79b80f
 };
 
 const createProduct = (
