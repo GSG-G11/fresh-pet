@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
     "dev": "cross-env NODE_ENV=development nodemon server/server.js",
-    "dev:client": "cd client && npm start",
+    "dev:client": "cd client && yarn start",
     "build": "cross-env NODE_ENV=development node server/database/config/build.js",
     "test": "jest",
     "heroku-postbuild": "cd client && npm install && npm run build"
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
