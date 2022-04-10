@@ -126,6 +126,14 @@
   cursor: pointer;
 }
 
+.sub-category {
+  position: absolute;
+  right: 10%;
+  top: 4%;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
 .add-to-cart {
   padding: 0.4rem 0.8rem;
   border: none;

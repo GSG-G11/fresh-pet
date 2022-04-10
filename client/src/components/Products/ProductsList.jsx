@@ -19,6 +19,10 @@ class ProductsList extends Component {
     if (prevState.products !== this.state.products) {
       this.setState({filteredProducts: this.state.products});
     }
+
+    if (prevState.filteredProducts !== this.state.filteredProducts) {
+      this.setState({filteredProducts: this.state.filteredProducts});
+    }
   }
 
   handleSearch = event => {
@@ -26,6 +30,18 @@ class ProductsList extends Component {
     const {products} = this.state;
     const filteredProducts = products.filter(product => {
       return product.name.toLowerCase().includes(searchValue);
+    });
+    this.setState({filteredProducts});
+  };
+
+  handleSelect = event => {
+    const selectValue = event.target.value.toLowerCase();
+    if (selectValue === '') {
+      this.setState({filteredProducts: this.state.products});
+    }
+    const {products} = this.state;
+    const filteredProducts = products.filter(product => {
+      return product.sub_category === selectValue;
     });
     this.setState({filteredProducts});
   };
@@ -38,9 +54,9 @@ class ProductsList extends Component {
 
     return (
       <div className="container">
-        <ProductsFilter handleSearch={this.handleSearch} />
+        <ProductsFilter handleSearch={this.handleSearch} handleSelect={this.handleSelect} />
         <section className="products-section">
-          {this.state.products.length === 0 && <h1>No Products Found</h1>}
+          {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
           {productsList}
         </section>
       </div>
