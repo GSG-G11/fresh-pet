@@ -1,14 +1,16 @@
-const {join} = require('path');
+const { join } = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const errorHandler = require('./middlewares/errorHandler');
+
 const productRouter = require('./routes/productRoutes');
+const { handleErrorServer, handleErrorNotFound } = require('./controllers');
+
 const app = express();
 app.use(cookieParser());
 app.disable('x-powered-by');
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
@@ -23,6 +25,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(errorHandler);
+app.use(handleErrorNotFound);
+app.use(handleErrorServer);
 
 module.exports = app;
