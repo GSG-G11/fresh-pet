@@ -1,0 +1,75 @@
+:root{
+  --orange: #FF5423,
+  --light-orange: #fb6f59,
+  --gray: #766a6a,
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.header {
+  height: 60px;
+  background-image: url('../Assets/green-background.jpg');
+  display: flex;
+  justify-content: space-around;
+
+}
+.logo-img {
+  width: 120px;
+  margin-left:  -15rem;
+
+}
+
+.signin-cart-holder {
+  display: flex;
+  margin-right:  -15rem;
+
+}
+.signin-btn{
+background-color: #FF5423;
+padding: 10px 30px;
+border-radius: 25px;
+border: none;
+color: #fff ;
+outline: none;
+font-weight: 600;
+transition: all 1s ease-in-out;
+  margin: auto 64px;
+
+}
+ .icons{
+         text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #766a6a;
+
+}
+.icons .product-num{
+    position: absolute;
+    top: .5rem;
+    left: .8rem;
+    background-color: #fb6f59;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+}
+.background-image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dog-img{
+  width: 115%;
+}
+
+.bone-img{
+  width: 25%;
+  position: absolute;
+  bottom: 1rem;
+  right: 10rem;
+}
