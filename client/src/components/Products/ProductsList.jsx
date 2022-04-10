@@ -11,7 +11,8 @@ class ProductsList extends Component {
   };
 
   componentDidMount() {
-    fetch('/api/v1/products')
+  
+    fetch('/api/v1/products' )
       .then(res => res.json())
       .then(data => this.setState({products: data.products}));
   }
@@ -25,7 +26,13 @@ class ProductsList extends Component {
       this.setState({filteredProducts: this.state.filteredProducts});
     }
   }
-
+  deleteHandler = id => {
+    console.log(id);
+     const { products } = this.state;
+     const filteredProducts = products.filter((product) => product.id !== id);
+     this.setState({ products: filteredProducts });
+  }
+  
   handleSearch = event => {
     const searchValue = event.target.value.toLowerCase();
     const {products} = this.state;
@@ -50,8 +57,12 @@ class ProductsList extends Component {
 
   render() {
     const {filteredProducts} = this.state;
-    const productsList = filteredProducts.map(product => (
-      <Product key={product.id} product={product} />
+    const productsList = filteredProducts.map((product) => (
+      <Product
+        key={product.id}
+        product={product}
+        deleteHandler={this.deleteHandler}
+      />
     ));
 
     return (
