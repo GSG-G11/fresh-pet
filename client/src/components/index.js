@@ -1,4 +1,4 @@
 import Modal from './Modal';
-import { CreateNotes, UpdateNotes } from './Forms';
+import { CreateProduct, UpdateProduct } from './Forms';
 
-export { Modal, CreateNotes, UpdateNotes };
+export { Modal, CreateProduct, UpdateProduct };

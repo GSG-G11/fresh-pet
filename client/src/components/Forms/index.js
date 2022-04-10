@@ -1,4 +1,4 @@
-import CreateNotes from './CreateNotes';
-import UpdateNotes from './UpdateNotes';
+import CreateProduct from './CreateProduct';
+import UpdateProduct from './UpdateProduct';
 
-export { CreateNotes, UpdateNotes };
+export { CreateProduct, UpdateProduct };

@@ -1,6 +1,9 @@
-const { getAllProducts, createProduct } = require('./productsController');
+const {  getAllProducts,
+  createProduct,
+  deleteProduct,
+} = require('./productsController');
 const { handleErrorNotFound, handleErrorServer } = require('./errorController');
-const {getSingleProduct} = require('./getSingleProduct');
+const { getSingleProduct } = require('./getSingleProduct');
 
 module.exports = {
   getAllProducts,
@@ -8,4 +11,5 @@ module.exports = {
   createProduct,
   handleErrorNotFound,
   handleErrorServer,
+  deleteProduct,
 };

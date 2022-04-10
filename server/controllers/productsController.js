@@ -2,6 +2,7 @@ const connection = require('../database/config/connection');
 const {
   getAllProductsQuery,
   createProductQuery,
+  deleteProductQuery,
 } = require('../database/queries/queries');
 const { createProductValidationSchema, CustomError } = require('../utils');
 
@@ -12,6 +13,11 @@ const getAllProducts = async (req, res) => {
     status: 'success',
     products: products.rows,
   });
+};
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  await connection.query(deleteProductQuery, [id]);
+  res.status(204).json({ msg: 'deleted item successfully' });
 };
 
 const createProduct = (
@@ -62,4 +68,5 @@ const createProduct = (
 module.exports = {
   getAllProducts,
   createProduct,
+  deleteProduct,
 };

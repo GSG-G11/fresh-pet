@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './form.module.css';
-const CreateNotes = ({
+const CreateProduct = ({
   handleChange,
   handleCreateProduct,
   formInput: { name, description, petCategory, subCategory, price, image },
@@ -94,4 +94,4 @@ const CreateNotes = ({
   );
 };
 
-export default CreateNotes;
+export default CreateProduct;

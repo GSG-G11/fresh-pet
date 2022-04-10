@@ -15,7 +15,6 @@ class App extends Component {
         <div>
           <Header />
           <LandingImage />
-
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
             <Route path='/notFound' component={NotFound} />

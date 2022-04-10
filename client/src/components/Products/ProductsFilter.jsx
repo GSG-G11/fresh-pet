@@ -27,7 +27,7 @@ class ProductsFilter extends Component {
             <option value='accessories'>Accessories</option>
             <option value='toy'>Toy</option>
           </select>
-          <button className='btn-add-product' onClick={() => openModalHandler('CreateNotes')}>
+          <button className='btn-add-product' onClick={() => openModalHandler('CreateProduct')}>
             Add Product
           </button>
         </div>
