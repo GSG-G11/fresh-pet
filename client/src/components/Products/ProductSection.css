@@ -32,14 +32,15 @@
 }
 
 .products-section {
+  margin: 0 auto;
   margin-top: 3.2rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 3.2rem;
 }
 
 .card {
-  width: 400px;
+  width: 333px;
   height: 100%;
   border-radius: 0.8rem;
   box-shadow: 0 0.8rem 2.4rem 0 rgba(0, 0, 0, 0.2);
@@ -53,13 +54,14 @@
 }
 
 .card .title {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 3.2rem;
+  margin-top: 4.2rem;
 }
 
 .card .description {
-  margin-top: 0.3rem;
+  padding: 0 1.2rem;
+  font-size: 0.9rem;
 }
 
 .card img {
@@ -74,8 +76,26 @@
   padding-bottom: 1.2rem;
 }
 
-.cats {
+.cat {
   background-color: purple;
+  border-radius: 10px;
+  padding: 0.4rem 1.2rem;
+}
+
+.dog {
+  background-color: green;
+  border-radius: 10px;
+  padding: 0.4rem 1.2rem;
+}
+
+.fish {
+  background-color: blue;
+  border-radius: 10px;
+  padding: 0.4rem 1.2rem;
+}
+
+.bird {
+  background-color: orange;
   border-radius: 10px;
   padding: 0.4rem 1.2rem;
 }

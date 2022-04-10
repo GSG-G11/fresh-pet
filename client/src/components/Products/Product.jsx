@@ -1,24 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export class Product extends Component {
-  render() {
-    return (
-      <div className="card">
-        <button className="delete-btn">x</button>
-        <h1 className="title">Meow Mix</h1>
-        <p className="description">Original Choice Dry Cat Food</p>
-        <div className="product-image">
-          <img
-            src="https://img.chewy.com/is/catalog/99965_MAIN._AC_SS232_V1462999356_.jpg"
-            alt="product"
-          />
-        </div>
-        <p className="price">9.48$</p>
-        <p className="forPet cats">Cats</p>
-        <button className="add-to-cart">Add to Cart</button>
+const Product = props => {
+  console.log(props);
+  const {name, price, image, description, pet_category, sub_category} = props.product;
+  return (
+    <div className="card">
+      <button className="delete-btn">x</button>
+      <h1 className="title">{name}</h1>
+      <p className="description">{description}</p>
+      <div className="product-image">
+        <img src={image} alt="product" />
       </div>
-    );
-  }
-}
+      <p className="price">{price}$</p>
+      <p className={`forPet ${pet_category}`}>{pet_category}</p>
+      <button className="add-to-cart">Add to Cart</button>
+    </div>
+  );
+};
 
 export default Product;
