@@ -10,7 +10,7 @@ const createProductValidationSchema = Joi.object({
   description: Joi.string().min(2).required(),
   petCategory: Joi.string().min(2).max(100).required(),
   subCategory: Joi.string().min(2).max(100).required(),
-  price: Joi.number().min(2).max(100).required(),
+  price: Joi.number().min(0.001).max(9999999).required(),
   image: Joi.string().allow('').pattern(regexURL).required(),
 });
 
