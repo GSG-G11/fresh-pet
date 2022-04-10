@@ -7,12 +7,10 @@ class ProductsFilter extends Component {
   };
 
   handleSearch = event => {
-    this.setState({searchValue: event.target.value});
     this.props.handleSearch(event);
   };
 
   handleSelect = event => {
-    this.setState({selectValue: event.target.value});
     this.props.handleSelect(event);
   };
 

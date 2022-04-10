@@ -56,7 +56,7 @@ class ProductsList extends Component {
 
     return (
       <div className="container">
-        <PetFilter/>  
+        <PetFilter />
         <ProductsFilter handleSearch={this.handleSearch} handleSelect={this.handleSelect} />
 
         <section className="products-section">

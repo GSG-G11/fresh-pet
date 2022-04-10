@@ -1,7 +1,6 @@
-import React from 'react'
-import bone from '../Assets/book-now.png'
+import React from 'react';
+import bone from '../Assets/book-now.png';
 import dog from '../Assets/background.jpg';
-
 import './Header.css';
 
 const LandingImage = () => {
