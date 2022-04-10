@@ -32,7 +32,10 @@
 }
 
 .products-section {
-  margin-top: 2.8rem;
+  margin-top: 3.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3.2rem;
 }
 
 .card {

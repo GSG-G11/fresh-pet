@@ -9,6 +9,8 @@ const ProductsList = () => {
       <ProductsFilter />
       <section className="products-section">
         <Product />
+        <Product />
+        <Product />
       </section>
     </div>
   );
