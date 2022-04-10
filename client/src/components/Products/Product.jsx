@@ -1,11 +1,27 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+const deleteRequest = (id) => {
+  fetch(`/api/v1/products/product/${id}`, { method: 'DELETE' }).then((res) =>
+    res.json(),
+  );
+};
 
-const Product = props => {
-  const {id, name, price, image, description, pet_category, sub_category} = props.product;
+const Product = (props) => {
+  const { id, name, price, image, description, pet_category, sub_category } =
+    props.product;
+  console.log(id);
+
   return (
     <div className="card">
-      <button className="delete-btn">x</button>
+      <button
+        className="delete-btn"
+        onClick={() => {
+          deleteRequest(id);
+          props.deleteHandler(id);
+        }}
+      >
+        x
+      </button>
       <h1 className="title">{name}</h1>
       <p className="description">{description}</p>
       <div className="product-image">
