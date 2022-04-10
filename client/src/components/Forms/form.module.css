@@ -49,7 +49,7 @@
   height: 2.1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #aa73e1;
+  color: #339e65;
 }
 
 .form__input__product textarea {
@@ -65,7 +65,7 @@
   height: 2.1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #aa73e1;
+  color: #34aa6b;
 }
 
 .btn__create__product {
@@ -74,7 +74,7 @@
   font-size: 18px;
   line-height: 22px;
   color: white;
-  background: #9249da;
+  background: #2f9f63;
   border-radius: 8px;
   padding: 0.5rem 0;
   margin-top: 0.5rem;
@@ -82,5 +82,5 @@
 }
 
 .btn__create__product:hover {
-  background: #7748a6;
+  background: #359662;
 }

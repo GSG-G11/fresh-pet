@@ -1,8 +1,8 @@
-const { createProductValidationSchema } = require('./validation');
+const { productValidationSchema } = require('./validation');
 
 const { CustomError } = require('./CustomError');
 
 module.exports = {
-  createProductValidationSchema,
+  productValidationSchema,
   CustomError,
 };

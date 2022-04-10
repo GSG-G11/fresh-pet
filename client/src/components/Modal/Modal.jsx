@@ -5,9 +5,9 @@ import styles from './modal.module.css';
 
 import { motion } from 'framer-motion';
 
-const index = ({ children, closeModalHandler }) => {
+const Modal = ({ children, closeModalHandler }) => {
   return (
-    <div>
+    <>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -26,8 +26,8 @@ const index = ({ children, closeModalHandler }) => {
         />
         <div className={styles.modal__content}>{children}</div>
       </motion.div>
-    </div>
+    </>
   );
 };
 
-export default index;
+export default Modal;

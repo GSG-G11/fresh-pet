@@ -17,6 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -24,15 +25,15 @@ code {
     monospace;
 }
 
-/* ::-moz-selection {
+::-moz-selection {
   color: white;
-  background: #9b6acb;
-} */
+  background: #40cc82;
+}
 
-/* ::selection {
+::selection {
   color: white;
-  background: #9b6acb;
-} */
+  background: #40cc82;
+}
 
 select,
 button,
@@ -48,13 +49,6 @@ textarea:focus {
 a {
   color: #333;
   text-decoration: none;
-}
-
-img,
-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 button {

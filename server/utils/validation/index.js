@@ -1,5 +1,5 @@
-const createProductValidationSchema = require('./createProductValidationSchema');
+const productValidationSchema = require('./productValidationSchema');
 
 module.exports = {
-  createProductValidationSchema,
+  productValidationSchema,
 };

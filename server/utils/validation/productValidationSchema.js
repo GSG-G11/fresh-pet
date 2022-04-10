@@ -5,7 +5,7 @@ const Joi = require('joi');
 const regexURL =
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
 
-const createProductValidationSchema = Joi.object({
+const productValidationSchema = Joi.object({
   name: Joi.string().min(2).max(100).required(),
   description: Joi.string().min(2).required(),
   petCategory: Joi.string().min(2).max(100).required(),
@@ -14,4 +14,4 @@ const createProductValidationSchema = Joi.object({
   image: Joi.string().allow('').pattern(regexURL).required(),
 });
 
-module.exports = createProductValidationSchema;
+module.exports = productValidationSchema;

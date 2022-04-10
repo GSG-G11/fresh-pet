@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import Product from './Product';
-import ProductsFilter from './ProductsFilter';
-import PetFilter from './PetFilter';
 import Axios from 'axios';
+
 import { toast } from 'react-toastify';
-import { Modal, CreateProduct, UpdateProduct } from '..';
+
+import {
+  Modal,
+  CreateProduct,
+  UpdateProduct,
+  Product,
+  ProductsFilter,
+  PetFilter,
+} from '..';
+
 import './ProductSection.css';
 
 class ProductsList extends Component {
@@ -25,10 +32,9 @@ class ProductsList extends Component {
   };
 
   componentDidMount() {
-  
-    fetch('/api/v1/products' )
-      .then(res => res.json())
-      .then(data => this.setState({products: data.products}));
+    fetch('/api/v1/products')
+      .then((res) => res.json())
+      .then((data) => this.setState({ products: data.products }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -41,14 +47,13 @@ class ProductsList extends Component {
     }
   }
 
-  
-  deleteHandler = id => {
-     const { products } = this.state;
-     const filteredProducts = products.filter((product) => product.id !== id);
-     this.setState({ products: filteredProducts });
-  }
-  
-  handleSearch = event => {
+  deleteHandler = (id) => {
+    const { products } = this.state;
+    const filteredProducts = products.filter((product) => product.id !== id);
+    this.setState({ products: filteredProducts });
+  };
+
+  handleSearch = (event) => {
     const searchValue = event.target.value.toLowerCase();
     const { products } = this.state;
     const filteredProducts = products.filter((product) => {
@@ -183,12 +188,14 @@ class ProductsList extends Component {
   };
 
   render() {
-    const {filteredProducts,
+    const {
+      filteredProducts,
       isOpen,
       componentName,
       hasErrorValidation,
-      formInput} = this.state;
-      const componentsLookUp = { CreateProduct, UpdateProduct };
+      formInput,
+    } = this.state;
+    const componentsLookUp = { CreateProduct, UpdateProduct };
     const productsList = filteredProducts.map((product) => (
       <Product
         key={product.id}
@@ -239,4 +246,3 @@ class ProductsList extends Component {
 }
 
 export default ProductsList;
-

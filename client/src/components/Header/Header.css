@@ -3,11 +3,7 @@
   --light-orange: #fb6f59,
   --gray: #766a6a,
 }
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 .header {
   height: 60px;
   position: absolute;
