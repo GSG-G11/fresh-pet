@@ -11,7 +11,7 @@ class App extends Component {
       <Switch>
         <Route path='/product/:id' component={ProductDetails} /> 
         <Route path='/notFound' component={NotFound} /> 
-        <ProductsList path='/' exact/>
+        <Route path='/' component={ProductsList} exact/>
         <Redirect to='notFound'/>
       </Switch>
       </div>

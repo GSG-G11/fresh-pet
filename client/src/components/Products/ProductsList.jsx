@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Product from './Product';
 import ProductsFilter from './ProductsFilter';
+import PetFilter from './PetFilter';
 import './ProductSection.css';
 
 class ProductsList extends Component {
@@ -20,6 +21,7 @@ class ProductsList extends Component {
     ));
     return (
       <div className="container">
+        <PetFilter/>
         <ProductsFilter />
         <section className="products-section">
           {this.state.products.length === 0 && <h1>No Products Found</h1>}
