@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import ProductsList from './components/Products/ProductsList';
-
+import ProductDetails from './components/Products/ProductDetails';
+import NotFound from './components/NotFound/NotFound';
 class App extends Component {
   render() {
     return (
+      <BrowserRouter>
       <div>
-        <ProductsList />
+      <Switch>
+        <Route path='/product/:id' component={ProductDetails} /> 
+        <Route path='/notFound' component={NotFound} /> 
+        <ProductsList path='/' exact/>
+        <Redirect to='notFound'/>
+      </Switch>
       </div>
+      </BrowserRouter>
     );
   }
 }
