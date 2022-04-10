@@ -95,7 +95,7 @@
 }
 
 .bird {
-  background-color: orange;
+  background-color: aquamarine;
   border-radius: 10px;
   padding: 0.4rem 1.2rem;
 }
@@ -136,4 +136,16 @@
   cursor: pointer;
   font-weight: bolder;
   font-size: 1.1rem;
+}
+
+.edit-btn {
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 7px;
+
+  color: white;
+  background-color: orange;
+  cursor: pointer;
+  margin-bottom: 1.2rem;
 }

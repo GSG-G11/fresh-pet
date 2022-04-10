@@ -13,6 +13,7 @@ const Product = props => {
       <p className="price">{price}$</p>
       <p className={`forPet ${pet_category}`}>{pet_category}</p>
       <button className="add-to-cart">Add to Cart</button>
+      <button className="edit-btn">Edit Product</button>
     </div>
   );
 };
