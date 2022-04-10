@@ -10,20 +10,21 @@
 }
 .header {
   height: 60px;
-  background-image: url('../Assets/green-background.jpg');
+  position: absolute;
+  z-index: 100;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 3.2rem;
 
 }
 .logo-img {
   width: 120px;
-  margin-left:  -15rem;
 
 }
 
 .signin-cart-holder {
   display: flex;
-  margin-right:  -15rem;
 
 }
 .signin-btn{
@@ -64,12 +65,12 @@ transition: all 1s ease-in-out;
 }
 
 .dog-img{
-  width: 115%;
+  object-fit: cover;
 }
 
 .bone-img{
   width: 25%;
   position: absolute;
   bottom: 1rem;
-  right: 10rem;
+  right: 22rem;
 }
