@@ -1,5 +1,4 @@
-.modal__background {
-  position: fixed;
+.modal__background {  position: fixed;
   z-index: 1000;
   background-color: #0000007d;
   top: 0;
@@ -12,7 +11,7 @@
   transition: all 0.4s;
 }
 .modal__container {
-  position: absolute;
+  position: fixed;
   z-index: 1500;
   background-color: white;
   width: 550px;
