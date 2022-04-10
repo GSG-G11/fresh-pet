@@ -21,7 +21,7 @@ class ProductsFilter extends Component {
       <div className="inputs-section">
         <input placeholder="Search for product" onChange={this.handleSearch} />
         <select onChange={this.handleSelect}>
-          <option value="">All</option>
+          <option value="all">All</option>
           <option value="food">Food</option>
           <option value="accessories">Accessories</option>
           <option value="toy">Toy</option>

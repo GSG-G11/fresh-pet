@@ -36,8 +36,9 @@ class ProductsList extends Component {
 
   handleSelect = event => {
     const selectValue = event.target.value.toLowerCase();
-    if (selectValue === '') {
+    if (selectValue === 'all') {
       this.setState({filteredProducts: this.state.products});
+      return;
     }
     const {products} = this.state;
     const filteredProducts = products.filter(product => {
