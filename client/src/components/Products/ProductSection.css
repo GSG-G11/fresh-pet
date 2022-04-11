@@ -143,6 +143,9 @@
   transition: all 0.3s ease-in-out;
 }
 
+.text-delete-btn {
+  margin-right: 0.5rem;
+}
 .delete-btn:hover {
   background-color: #a52828;
 }

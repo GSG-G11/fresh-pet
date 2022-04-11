@@ -62,7 +62,7 @@ class App extends Component {
           <LandingImage />
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
-            <Route path='/cart' component={Cart} />
+            <Route path='/cart' render={(props) => <Cart {...props} />} />
             <Route path='/notFound' component={NotFound} />
             <Route
               path='/'

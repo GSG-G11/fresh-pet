@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AddToCard, Delete } from '..';
 
 const Product = (props) => {
@@ -12,6 +12,13 @@ const Product = (props) => {
   if (!productsLocalStorage) {
     localStorage.setItem('products', JSON.stringify([]));
   }
+
+  const InCart = ({ match }) => {
+    if (match && match.path === '/cart') {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <div className='card'>
@@ -26,19 +33,28 @@ const Product = (props) => {
       <p className='sub-category'>{sub_category}</p>
       <p className={`forPet ${pet_category}`}>{pet_category}</p>
 
-      <div className='btns'>
-        <AddToCard {...props} />
+      {InCart(props) && (
+        <div className='btns'>
+          <AddToCard {...props} />
 
-        <button
-          className='edit-btn'
-          onClick={() =>
-            props.openEditModalHandler('UpdateProduct', props.product)
-          }>
-          <FontAwesomeIcon icon={faEdit} />
+          <button
+            className='edit-btn'
+            onClick={() =>
+              props.openEditModalHandler('UpdateProduct', props.product)
+            }>
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+
+          <Delete {...props} />
+        </div>
+      )}
+
+      {!InCart(props) && (
+        <button className='delete-btn'>
+          <span className='text-delete-btn'>Remove Form Cart</span>
+          <FontAwesomeIcon icon={faTrash} />
         </button>
-
-        <Delete {...props} />
-      </div>
+      )}
     </div>
   );
 };
