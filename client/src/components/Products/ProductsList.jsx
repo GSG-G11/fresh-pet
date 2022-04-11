@@ -60,7 +60,9 @@ class ProductsList extends Component {
 
   deleteHandler = (id) => {
     const { products } = this.state;
+    const { alertSuccess } = this.props;
     const filteredProducts = products.filter((product) => product.id !== id);
+    alertSuccess('Product Deleted Successfully');
     this.setState({ products: filteredProducts });
   };
 
@@ -243,6 +245,7 @@ class ProductsList extends Component {
       hasErrorValidation,
       formInput,
     } = this.state;
+    const { alertSuccess } = this.props;
     const componentsLookUp = { CreateProduct, UpdateProduct };
     const productsList = filteredProducts.map((product) => (
       <Product
@@ -250,6 +253,7 @@ class ProductsList extends Component {
         product={product}
         openEditModalHandler={this.openEditModalHandler}
         deleteHandler={this.deleteHandler}
+        alertSuccess={alertSuccess}
       />
     ));
 
@@ -270,7 +274,7 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className="container">
+      <div className='container'>
         <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
@@ -278,7 +282,7 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
         />
 
-        <section className="products-section">
+        <section className='products-section'>
           {this.state.filteredProducts.length === 0 && (
             <h1>No Products Found</h1>
           )}
