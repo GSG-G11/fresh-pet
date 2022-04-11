@@ -118,10 +118,22 @@ class ProductsList extends Component {
     });
   };
 
-  openEditModalHandler = (componentName, formInput) => {
+  openEditModalHandler = (
+    componentName,
+    { id, name, price, image, description, pet_category, sub_category },
+  ) => {
+    console.log(id, price);
     this.setState({
       isOpen: !this.state.isOpen,
       componentName,
+      formInput: {
+        name: name,
+        description: description,
+        petCategory: pet_category,
+        subCategory: sub_category,
+        price: price,
+        image: image,
+      },
     });
   };
 
@@ -187,6 +199,7 @@ class ProductsList extends Component {
       <Product
         key={product.id}
         product={product}
+        openEditModalHandler={this.openEditModalHandler}
         deleteHandler={this.deleteHandler}
       />
     ));

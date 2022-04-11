@@ -2,7 +2,7 @@ import { Modal } from './Modal';
 import { CreateProduct, UpdateProduct } from './Forms';
 import { LandingImage, Header } from './Header';
 import { NotFound } from './NotFound';
-import { AddToCard, Delete, Edit } from './Buttons';
+import { AddToCard, Delete } from './Buttons';
 
 import {
   PetFilter,
@@ -26,5 +26,4 @@ export {
   ProductsList,
   AddToCard,
   Delete,
-  Edit,
 };
