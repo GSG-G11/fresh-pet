@@ -7,26 +7,32 @@ const PetSelection = ({ handlePetSelection }) => {
     {
       category: 'all',
       image: '../img/treats.png',
+      bgImage: '../img/green-background.jpg',
     },
     {
       category: 'cat',
       image: '../img/cat.png',
+      bgImage: '../img/red-background.jpg',
     },
     {
       category: 'dog',
       image: '../img/dog.png',
+      bgImage: '../img/yellow-background.jpg',
     },
     {
       category: 'horse',
       image: '../img/horseback.png',
+      bgImage: '../img/red-background.jpg',
     },
     {
       category: 'bird',
       image: '../img/bird.png',
+      bgImage: '../img/yellow-background.jpg',
     },
     {
       category: 'fish',
       image: '../img/fish.png',
+      bgImage: '../img/green-background.jpg',
     },
   ];
 
@@ -34,7 +40,7 @@ const PetSelection = ({ handlePetSelection }) => {
     <div className='pet-selection'>
       <div className='container'>
         <ul className='pets-list'>
-          {petCategory.map(({ category, image }) => {
+          {petCategory.map(({ category, image, bgImage }) => {
             return (
               <li
                 key={category}
@@ -43,7 +49,7 @@ const PetSelection = ({ handlePetSelection }) => {
                 onClick={(e) => handlePetSelection(category)}>
                 <img
                   className='category-background'
-                  src='../img/green-background.jpg'
+                  src={bgImage}
                   alt='green'
                 />
                 <img className='pet-icon' src={image} alt={category} />
