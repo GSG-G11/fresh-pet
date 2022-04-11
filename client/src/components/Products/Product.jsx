@@ -1,23 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AddToCard from '../Buttons/AddToCard';
-import Delete from '../Buttons/Delete';
-import Edit from '../Buttons/Edit';
 
-// const deleteRequest = (id) => {
-//   /// check it, it has error in console log
-//   fetch(`/api/v1/products/product/${id}`, { method: 'DELETE' })
-//     .then((res) => res.json())
-//     .then((data) => console.log(data))
-//     .catch((err) => console.log(err));
-// };
-
-// Add to cart local storage function
-// const addToCartStorage = (props) => {
-//   const products = JSON.parse(localStorage.getItem('products'));
-//   products.push(props.product);
-//   localStorage.setItem('products', JSON.stringify(products));
-// };
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { AddToCard, Delete } from '..';
 
 const Product = (props) => {
   const { id, name, price, image, description, pet_category, sub_category } =
@@ -29,7 +15,7 @@ const Product = (props) => {
 
   return (
     <div className='card'>
-      <Delete {...props}/>
+      <Delete {...props} />
       <h1 className='title'>{name}</h1>
       <p className='description'>{description}</p>
       <div className='product-image'>
@@ -40,8 +26,15 @@ const Product = (props) => {
       <p className='price'>{price}$</p>
       <p className='sub-category'>{sub_category}</p>
       <p className={`forPet ${pet_category}`}>{pet_category}</p>
-      <AddToCard {...props}/>
-      <Edit/>
+      <AddToCard {...props} />
+
+      <button
+        className='edit-btn'
+        onClick={() =>
+          props.openEditModalHandler('UpdateProduct', props.product)
+        }>
+        <FontAwesomeIcon icon={faEdit} />
+      </button>
     </div>
   );
 };

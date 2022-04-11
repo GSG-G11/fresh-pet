@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
-import { toast } from 'react-toastify';
-
 import {
   Modal,
   CreateProduct,
@@ -29,6 +27,7 @@ class ProductsList extends Component {
       image: '',
     },
     hasErrorValidation: false,
+    productId: '',
   };
 
   componentDidMount() {
@@ -99,6 +98,7 @@ class ProductsList extends Component {
         price: '',
         image: '',
       },
+      productId: '',
     });
   };
 
@@ -120,10 +120,22 @@ class ProductsList extends Component {
     });
   };
 
-  openEditModalHandler = (componentName, formInput) => {
+  openEditModalHandler = (
+    componentName,
+    { id, name, price, image, description, pet_category, sub_category },
+  ) => {
     this.setState({
       isOpen: !this.state.isOpen,
       componentName,
+      formInput: {
+        name: name,
+        description: description,
+        petCategory: pet_category,
+        subCategory: sub_category,
+        price: price,
+        image: image,
+      },
+      productId: id,
     });
   };
 
@@ -133,36 +145,13 @@ class ProductsList extends Component {
     this.setState({ formInput: { ...formInput, [name]: value } });
   };
 
-  alertSuccess = () => {
-    return toast.success('Create Product SuccessFully', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  alertError = () => {
-    return toast.error('Create Product Failed', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   handleCreateProduct = () => {
     const {
       products,
       formInput: { name, description, petCategory, subCategory, price, image },
     } = this.state;
+    const { alertSuccess, alertError } = this.props;
     let cloneProducts = [...products];
-
     if (
       name.length &&
       description.length &&
@@ -180,7 +169,7 @@ class ProductsList extends Component {
         image,
       })
         .then(({ data: { data: newProduct } }) => {
-          this.alertSuccess();
+          alertSuccess('Product Created Successfully');
           cloneProducts = [newProduct, ...products];
           this.setState({
             products: cloneProducts,
@@ -189,11 +178,59 @@ class ProductsList extends Component {
           });
         })
         .catch(() => {
-          this.alertError();
+          alertError('Error Creating Product');
           this.clearInputs();
         });
     } else {
-      this.alertError();
+      alertError('Please fill all fields Correctly');
+      this.clearInputs();
+    }
+  };
+  handleUpdateProduct = () => {
+    const {
+      products,
+      formInput: { name, description, petCategory, subCategory, price, image },
+      productId,
+    } = this.state;
+    const { alertSuccess, alertError } = this.props;
+    let cloneProducts = [...products];
+
+    if (
+      name.length &&
+      description.length &&
+      petCategory.length &&
+      subCategory.length &&
+      price.length &&
+      image.length
+    ) {
+      Axios.patch(`/api/v1/products/product/${productId}`, {
+        name,
+        description,
+        petCategory,
+        subCategory,
+        price,
+        image,
+      })
+        .then(({ data: { data } }) => {
+          const UpdateProducts = cloneProducts.find(
+            ({ id }) => productId === id,
+          );
+          UpdateProducts.name = name;
+          UpdateProducts.description = description;
+          UpdateProducts.image = image;
+          UpdateProducts.price = price;
+          UpdateProducts.pet_category = petCategory;
+          UpdateProducts.sub_category = subCategory;
+          this.clearInputs();
+
+          alertSuccess('Product Updated Successfully');
+        })
+        .catch(() => {
+          alertError('Error Creating Product');
+          this.clearInputs();
+        });
+    } else {
+      alertError('Please fill all fields Correctly');
       this.clearInputs();
     }
   };
@@ -211,6 +248,7 @@ class ProductsList extends Component {
       <Product
         key={product.id}
         product={product}
+        openEditModalHandler={this.openEditModalHandler}
         deleteHandler={this.deleteHandler}
       />
     ));
@@ -223,6 +261,7 @@ class ProductsList extends Component {
           <SelectedComponent
             handleChange={this.handleChange}
             handleCreateProduct={this.handleCreateProduct}
+            handleUpdateProduct={this.handleUpdateProduct}
             hasErrorValidation={hasErrorValidation}
             formInput={formInput}
           />
@@ -231,7 +270,7 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className='container'>
+      <div className="container">
         <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
@@ -239,7 +278,7 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
         />
 
-        <section className='products-section'>
+        <section className="products-section">
           {this.state.filteredProducts.length === 0 && (
             <h1>No Products Found</h1>
           )}
