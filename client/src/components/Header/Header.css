@@ -65,9 +65,3 @@ transition: all 1s ease-in-out;
   object-fit: cover;
 }
 
-.bone-img{
-  width: 25%;
-  position: absolute;
-  bottom: 3rem;
-  right: 20rem;
-}
