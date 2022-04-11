@@ -38,11 +38,13 @@ class App extends Component {
       ({ id }) => id !== productId,
     );
 
-    localStorage.removeItem('products');
+    localStorage.setItem('products', JSON.stringify(filteredCartProducts));
+
     this.alertSuccess('Delete From Cart Successfully');
     this.setState({
       cartProduct: filteredCartProducts,
     });
+    this.updateNumberCartProduct();
   };
 
   componentDidMount() {

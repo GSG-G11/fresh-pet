@@ -2,7 +2,6 @@ import React from 'react';
 import { Product } from '../Products';
 
 const Cart = (props) => {
-  console.log(props);
   const products =
     props.cartProduct ?? JSON.parse(localStorage.getItem('products'));
   const cartProducts = products.map((product) => (
