@@ -16,6 +16,7 @@ import {
 class App extends Component {
   state = {
     numberCartProduct: 0,
+    cartProduct: [],
   };
 
   updateNumberCartProduct = () => {
@@ -25,9 +26,28 @@ class App extends Component {
         : 0,
     });
   };
+  updateCartProduct = () => {
+    this.setState({
+      cartProduct: JSON.parse(localStorage.getItem('products')),
+    });
+  };
+
+  deleteCartProduct = (productId) => {
+    const { cartProduct } = this.state;
+    const filteredCartProducts = cartProduct.filter(
+      ({ id }) => id !== productId,
+    );
+
+    localStorage.removeItem('products');
+    this.alertSuccess('Delete From Cart Successfully');
+    this.setState({
+      cartProduct: filteredCartProducts,
+    });
+  };
 
   componentDidMount() {
     this.updateNumberCartProduct();
+    this.updateCartProduct();
   }
 
   alertSuccess = (message) => {
@@ -54,7 +74,7 @@ class App extends Component {
   };
 
   render() {
-    const { numberCartProduct } = this.state;
+    const { numberCartProduct, cartProduct } = this.state;
     return (
       <BrowserRouter>
         <div>
@@ -62,7 +82,17 @@ class App extends Component {
           <LandingImage />
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
-            <Route path='/cart' render={(props) => <Cart {...props} />} />
+            <Route
+              path='/cart'
+              render={(props) => (
+                <Cart
+                  cartProduct={cartProduct}
+                  updateCartProduct={this.updateCartProduct}
+                  deleteCartProduct={this.deleteCartProduct}
+                  {...props}
+                />
+              )}
+            />
             <Route path='/notFound' component={NotFound} />
             <Route
               path='/'
@@ -71,6 +101,8 @@ class App extends Component {
                   alertSuccess={this.alertSuccess}
                   alertError={this.alertError}
                   updateNumberCartProduct={this.updateNumberCartProduct}
+                  cartProduct={cartProduct}
+                  updateCartProduct={this.updateCartProduct}
                 />
               )}
               exact

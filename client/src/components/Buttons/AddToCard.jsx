@@ -7,6 +7,7 @@ const addToCartStorage = ({
   alertSuccess,
   alertError,
   updateNumberCartProduct,
+  updateCartProduct,
 }) => {
   let products = JSON.parse(localStorage.getItem('products'));
   const firstProduct = products.find(({ id }) => id === product.id);
@@ -18,6 +19,7 @@ const addToCartStorage = ({
     localStorage.setItem('products', JSON.stringify(products));
     alertSuccess('Product added to cart');
     updateNumberCartProduct();
+    updateCartProduct();
   }
 };
 const AddToCard = (props) => {

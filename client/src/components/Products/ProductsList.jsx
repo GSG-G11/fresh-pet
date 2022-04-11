@@ -245,7 +245,12 @@ class ProductsList extends Component {
       hasErrorValidation,
       formInput,
     } = this.state;
-    const { alertSuccess, alertError,updateNumberCartProduct } = this.props;
+    const {
+      alertSuccess,
+      alertError,
+      updateNumberCartProduct,
+      updateCartProduct,
+    } = this.props;
     const componentsLookUp = { CreateProduct, UpdateProduct };
     const productsList = filteredProducts.map((product) => (
       <Product
@@ -256,6 +261,7 @@ class ProductsList extends Component {
         alertSuccess={alertSuccess}
         alertError={alertError}
         updateNumberCartProduct={updateNumberCartProduct}
+        updateCartProduct={updateCartProduct}
       />
     ));
 

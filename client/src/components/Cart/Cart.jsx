@@ -2,9 +2,11 @@ import React from 'react';
 import { Product } from '../Products';
 
 const Cart = (props) => {
-  const products = JSON.parse(localStorage.getItem('products'));
+  console.log(props);
+  const products =
+    props.cartProduct ?? JSON.parse(localStorage.getItem('products'));
   const cartProducts = products.map((product) => (
-    <Product  key={product.id} product={product} {...props} />
+    <Product key={product.id} product={product} {...props} />
   ));
 
   let sum = 0;
@@ -14,7 +16,7 @@ const Cart = (props) => {
   return (
     <>
       <div className='container'>
-        <h3>Total Price: {sum.toFixed(2)}$</h3>
+        <h3>Total Price: ${sum.toFixed(2)}</h3>
         <section className='products-section'>
           {products.length === 0 && <h1>No Products Found</h1>}
           {cartProducts}
