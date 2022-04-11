@@ -60,7 +60,6 @@ class ProductsList extends Component {
   };
 
   deleteHandler = (id) => {
-    console.log(id);
     const { products } = this.state;
     const filteredProducts = products.filter((product) => product.id !== id);
     this.setState({ products: filteredProducts });
@@ -183,7 +182,6 @@ class ProductsList extends Component {
         .then(({ data: { data: newProduct } }) => {
           this.alertSuccess();
           cloneProducts = [newProduct, ...products];
-          console.log(cloneProducts);
           this.setState({
             products: cloneProducts,
             isOpen: false,
@@ -234,7 +232,7 @@ class ProductsList extends Component {
 
     return (
       <div className='container'>
-        <PetFilter />
+        <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
           handleSelect={this.handleSelect}

@@ -15,27 +15,29 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
-        <LandingImage />
-        <Switch>
-          <Route path='/product/:id' component={ProductDetails} />
-          <Route path='/notFound' component={NotFound} />
-          <Route path='/' component={ProductsList} exact />
-          <Redirect to='notFound' />
-        </Switch>
+        <div>
+          <Header />
+          <LandingImage />
+          <Switch>
+            <Route path='/product/:id' component={ProductDetails} />
+            <Route path='/notFound' component={NotFound} />
+            <Route path='/' component={ProductsList} exact />
+            <Redirect to='notFound' />
+          </Switch>
 
-        <ToastContainer
-          position='top-right'
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <ToastContainer />
+          <ToastContainer
+            position='top-right'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <ToastContainer />
+        </div>
       </BrowserRouter>
     );
   }
