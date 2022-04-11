@@ -7,6 +7,8 @@ const {
   updateProduct,
 } = require('./productsController');
 
+const { renderClientPages } = require('./clientController');
+
 module.exports = {
   getAllProducts,
   getSingleProduct,
@@ -15,4 +17,5 @@ module.exports = {
   createProduct,
   handleErrorNotFound,
   handleErrorServer,
+  renderClientPages
 };

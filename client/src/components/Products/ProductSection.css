@@ -110,19 +110,6 @@
   align-items: center;
 }
 
-.delete-btn {
-  position: absolute;
-  right: -4%;
-  top: -2%;
-  font-size: 1.2rem;
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  background-color: red;
-  cursor: pointer;
-}
-
 .sub-category {
   position: absolute;
   right: 10%;
@@ -141,7 +128,28 @@
   cursor: pointer;
   font-weight: bolder;
   font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
 }
+.delete-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  margin-bottom: 1.2rem;
+  background-color: #e42929;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.text-delete-btn {
+  margin-right: 0.5rem;
+}
+.delete-btn:hover {
+  background-color: #a52828;
+}
+
 .add-to-cart:hover {
   background-color: #2f8a6f;
 }
@@ -155,6 +163,7 @@
   background-color: orange;
   cursor: pointer;
   margin-bottom: 1.2rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .edit-btn:hover {
