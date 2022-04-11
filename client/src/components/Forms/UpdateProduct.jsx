@@ -106,7 +106,7 @@ const UpdateProduct = ({
             type="button"
             onClick={handleUpdateProduct}
           >
-            Submit
+            Update Product
           </button>
         </div>
       </form>

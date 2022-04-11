@@ -27,6 +27,7 @@ class ProductsList extends Component {
       image: '',
     },
     hasErrorValidation: false,
+    productId: '',
   };
 
   componentDidMount() {
@@ -97,6 +98,7 @@ class ProductsList extends Component {
         price: '',
         image: '',
       },
+      productId: '',
     });
   };
 
@@ -122,7 +124,6 @@ class ProductsList extends Component {
     componentName,
     { id, name, price, image, description, pet_category, sub_category },
   ) => {
-    console.log(id, price);
     this.setState({
       isOpen: !this.state.isOpen,
       componentName,
@@ -134,6 +135,7 @@ class ProductsList extends Component {
         price: price,
         image: image,
       },
+      productId: id,
     });
   };
 
@@ -150,7 +152,6 @@ class ProductsList extends Component {
     } = this.state;
     const { alertSuccess, alertError } = this.props;
     let cloneProducts = [...products];
-
     if (
       name.length &&
       description.length &&
@@ -175,6 +176,54 @@ class ProductsList extends Component {
             isOpen: false,
             componentName: '',
           });
+        })
+        .catch(() => {
+          alertError('Error Creating Product');
+          this.clearInputs();
+        });
+    } else {
+      alertError('Please fill all fields Correctly');
+      this.clearInputs();
+    }
+  };
+  handleUpdateProduct = () => {
+    const {
+      products,
+      formInput: { name, description, petCategory, subCategory, price, image },
+      productId,
+    } = this.state;
+    const { alertSuccess, alertError } = this.props;
+    let cloneProducts = [...products];
+
+    if (
+      name.length &&
+      description.length &&
+      petCategory.length &&
+      subCategory.length &&
+      price.length &&
+      image.length
+    ) {
+      Axios.patch(`/api/v1/products/product/${productId}`, {
+        name,
+        description,
+        petCategory,
+        subCategory,
+        price,
+        image,
+      })
+        .then(({ data: { data } }) => {
+          const UpdateProducts = cloneProducts.find(
+            ({ id }) => productId === id,
+          );
+          UpdateProducts.name = name;
+          UpdateProducts.description = description;
+          UpdateProducts.image = image;
+          UpdateProducts.price = price;
+          UpdateProducts.pet_category = petCategory;
+          UpdateProducts.sub_category = subCategory;
+          this.clearInputs();
+
+          alertSuccess('Product Updated Successfully');
         })
         .catch(() => {
           alertError('Error Creating Product');
@@ -212,6 +261,7 @@ class ProductsList extends Component {
           <SelectedComponent
             handleChange={this.handleChange}
             handleCreateProduct={this.handleCreateProduct}
+            handleUpdateProduct={this.handleUpdateProduct}
             hasErrorValidation={hasErrorValidation}
             formInput={formInput}
           />
@@ -220,7 +270,7 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className='container'>
+      <div className="container">
         <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
@@ -228,7 +278,7 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
         />
 
-        <section className='products-section'>
+        <section className="products-section">
           {this.state.filteredProducts.length === 0 && (
             <h1>No Products Found</h1>
           )}
