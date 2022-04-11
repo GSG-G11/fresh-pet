@@ -12,8 +12,10 @@ const Header = () => {
       <div className="signin-cart-holder">
         <button className="signin-btn">Sign in</button>
         <div className="icons">
-          <ImCart className="cart-icon" />
-          <span className="product-num">5</span>
+          <Link to={'/cart'}>
+            <ImCart className="cart-icon" />
+            <span className="product-num">5</span>
+          </Link>
         </div>
       </div>
     </header>

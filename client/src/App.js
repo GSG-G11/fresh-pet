@@ -8,6 +8,7 @@ import {
   Header,
   LandingImage,
   NotFound,
+  Cart,
   ProductsList,
   ProductDetails,
 } from './components';
@@ -44,6 +45,7 @@ class App extends Component {
           <LandingImage />
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
+            <Route path='/cart' component={Cart} />
             <Route path='/notFound' component={NotFound} />
             <Route
               path='/'

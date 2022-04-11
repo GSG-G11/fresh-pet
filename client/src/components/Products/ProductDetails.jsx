@@ -15,11 +15,15 @@ class ProductDetails extends Component {
       .then(({data}) => this.setState({singleProduct: data}))
       .catch(err => console.log(err));
   }
-  render() {
-    const {name, description, price, pet_category, sub_category, image} =
-      this.state.singleProduct;
 
-    return (
+  render(){
+    const {name,
+            description,
+            price,
+            pet_category,
+            image} = this.state.singleProduct;
+    
+    return(
       <div className="product-details">
         <div className="container">
           <Link to="/">
