@@ -14,6 +14,23 @@ import {
 } from './components';
 
 class App extends Component {
+  state = {
+    numberCartProduct: 0,
+  };
+
+  updateNumberCartProduct = () => {
+    console.log(JSON.parse(localStorage.getItem('products')).length);
+    this.setState({
+      numberCartProduct: JSON.parse(localStorage.getItem('products'))
+        ? JSON.parse(localStorage.getItem('products')).length
+        : 0,
+    });
+  };
+
+  componentDidMount() {
+    this.updateNumberCartProduct();
+  }
+
   alertSuccess = (message) => {
     return toast.success(message, {
       position: 'top-right',
@@ -38,10 +55,11 @@ class App extends Component {
   };
 
   render() {
+    const { numberCartProduct } = this.state;
     return (
       <BrowserRouter>
         <div>
-          <Header />
+          <Header numberCartProduct={numberCartProduct} />
           <LandingImage />
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
@@ -53,6 +71,7 @@ class App extends Component {
                 <ProductsList
                   alertSuccess={this.alertSuccess}
                   alertError={this.alertError}
+                  updateNumberCartProduct={this.updateNumberCartProduct}
                 />
               )}
               exact

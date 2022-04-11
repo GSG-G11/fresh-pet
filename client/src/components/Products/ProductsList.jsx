@@ -245,7 +245,7 @@ class ProductsList extends Component {
       hasErrorValidation,
       formInput,
     } = this.state;
-    const { alertSuccess } = this.props;
+    const { alertSuccess, alertError,updateNumberCartProduct } = this.props;
     const componentsLookUp = { CreateProduct, UpdateProduct };
     const productsList = filteredProducts.map((product) => (
       <Product
@@ -254,6 +254,8 @@ class ProductsList extends Component {
         openEditModalHandler={this.openEditModalHandler}
         deleteHandler={this.deleteHandler}
         alertSuccess={alertSuccess}
+        alertError={alertError}
+        updateNumberCartProduct={updateNumberCartProduct}
       />
     ));
 
