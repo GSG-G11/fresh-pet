@@ -3,11 +3,7 @@
   --light-orange: #fb6f59,
   --gray: #766a6a,
 }
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 .header {
   height: 60px;
   position: absolute;
@@ -59,6 +55,7 @@ transition: all 1s ease-in-out;
     text-align: center;
 }
 .background-image {
+  width: 115%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -71,6 +68,6 @@ transition: all 1s ease-in-out;
 .bone-img{
   width: 25%;
   position: absolute;
-  bottom: 1rem;
-  right: 22rem;
+  bottom: 3rem;
+  right: 20rem;
 }

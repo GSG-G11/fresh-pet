@@ -1,3 +1,15 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +17,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+::-moz-selection {
+  color: white;
+  background: #40cc82;
+}
+
+::selection {
+  color: white;
+  background: #40cc82;
+}
+
+select,
+button,
+button:focus,
+input,
+input:focus textarea,
+textarea,
+textarea:focus {
+  outline: none;
+  border: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: transparent;
 }
