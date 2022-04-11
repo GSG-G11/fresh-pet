@@ -19,7 +19,6 @@ class App extends Component {
   };
 
   updateNumberCartProduct = () => {
-    console.log(JSON.parse(localStorage.getItem('products')).length);
     this.setState({
       numberCartProduct: JSON.parse(localStorage.getItem('products'))
         ? JSON.parse(localStorage.getItem('products')).length
@@ -90,7 +89,6 @@ class App extends Component {
             draggable
             pauseOnHover
           />
-          <ToastContainer />
         </div>
       </BrowserRouter>
     );
