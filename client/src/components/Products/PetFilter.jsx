@@ -37,6 +37,7 @@ const PetSelection = ({ handlePetSelection }) => {
           {petCategory.map(({ category, image }) => {
             return (
               <li
+                key={category}
                 className='pet-item'
                 title={category}
                 onClick={(e) => handlePetSelection(category)}>

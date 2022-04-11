@@ -6,6 +6,8 @@ const CreateProduct = ({
   formInput: { name, description, petCategory, subCategory, price, image },
   hasErrorValidation,
 }) => {
+  const categories = ['all', 'Food', 'Accessories', 'Toy'];
+  const petCategories = ['all', 'cat', 'dog', 'horse', 'bird', 'fish'];
   return (
     <div className={styles.container__modal__product}>
       <h1 className={styles.title__modal__product}> Create Product </h1>
@@ -23,25 +25,29 @@ const CreateProduct = ({
         </div>
         <div className={styles.form__input__product}>
           <label htmlFor='petCategory'>Pet Category</label>
-          <input
-            type='text'
-            name='petCategory'
-            id='petCategory'
-            value={petCategory}
-            onChange={handleChange}
-            placeholder='Enter Your petCategory of product...'
-          />
+
+          <select id='petCategory' name='petCategory' onChange={handleChange}>
+            {petCategories.map((category) => {
+              return (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className={styles.form__input__product}>
           <label htmlFor='subCategory'>Sub Category</label>
-          <input
-            type='text'
-            name='subCategory'
-            id='subCategory'
-            value={subCategory}
-            onChange={handleChange}
-            placeholder='Enter Your subCategory of product...'
-          />
+
+          <select name='subCategory' onChange={handleChange}>
+            {categories.map((category) => {
+              return (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className={styles.form__input__product}>
           <label htmlFor='price'>Price</label>

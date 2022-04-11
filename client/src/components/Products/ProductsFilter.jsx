@@ -17,17 +17,19 @@ class ProductsFilter extends Component {
 
   render() {
     const { openModalHandler } = this.props;
+    const subCategory = ['all', 'Food', 'Accessories', 'Toy'];
     return (
       <div className='inputs-section'>
         <input placeholder='Search for product' onChange={this.handleSearch} />
         <div>
           <select onChange={this.handleSelect}>
-            <option value='all'>All</option>
-            <option value='food'>Food</option>
-            <option value='accessories'>Accessories</option>
-            <option value='toy'>Toy</option>
+            {subCategory.map((category) => {
+              return <option key={category} value={category}>{category}</option>;
+            })}
           </select>
-          <button className='btn-add-product' onClick={() => openModalHandler('CreateProduct')}>
+          <button
+            className='btn-add-product'
+            onClick={() => openModalHandler('CreateProduct')}>
             Add Product
           </button>
         </div>
