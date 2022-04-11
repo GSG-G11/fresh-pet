@@ -3,6 +3,8 @@ import { CreateProduct, UpdateProduct } from './Forms';
 import { LandingImage, Header } from './Header';
 import { NotFound } from './NotFound';
 import { Cart } from './Cart';
+import { AddToCard, Delete } from './Buttons';
+
 import {
   PetFilter,
   Product,
@@ -24,4 +26,6 @@ export {
   ProductDetails,
   ProductsFilter,
   ProductsList,
+  AddToCard,
+  Delete,
 };
