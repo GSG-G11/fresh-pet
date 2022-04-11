@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const deleteRequest = (id) => {
-  fetch('/api/v1/products/product' + id, { method: 'DELETE' }).then((res) =>
-    res.json(),
-  );
+  /// check it, it has error in console log
+  fetch(`/api/v1/products/product/${id}`, { method: 'DELETE' })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 };
 
 // Add to cart local storage function
