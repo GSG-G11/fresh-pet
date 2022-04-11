@@ -41,11 +41,16 @@ const PetSelection = ({ handlePetSelection }) => {
                 className='pet-item'
                 title={category}
                 onClick={(e) => handlePetSelection(category)}>
-                <img
-                  className='category-background'
+               {(category === 'all' || category === 'horse')?
+                <img className='category-background'
                   src='../img/green-background.jpg'
-                  alt='green'
-                />
+                  alt='green'/> : (category === 'dog' || category === 'fish')?
+                   <img className='category-background'
+                  src='../img/yellow-background.jpg'
+                  alt='yellow'/> : 
+                   <img className='category-background'
+                  src='../img/red-background.jpg'
+                  alt='red'/> }
                 <img className='pet-icon' src={image} alt={category} />
               </li>
             );
