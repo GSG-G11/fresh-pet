@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
-import { toast } from 'react-toastify';
-
 import {
   Modal,
   CreateProduct,
@@ -133,34 +131,12 @@ class ProductsList extends Component {
     this.setState({ formInput: { ...formInput, [name]: value } });
   };
 
-  alertSuccess = () => {
-    return toast.success('Create Product SuccessFully', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  alertError = () => {
-    return toast.error('Create Product Failed', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   handleCreateProduct = () => {
     const {
       products,
       formInput: { name, description, petCategory, subCategory, price, image },
     } = this.state;
+    const { alertSuccess, alertError } = this.props;
     let cloneProducts = [...products];
 
     if (
@@ -180,7 +156,7 @@ class ProductsList extends Component {
         image,
       })
         .then(({ data: { data: newProduct } }) => {
-          this.alertSuccess();
+          alertSuccess('Product Created Successfully');
           cloneProducts = [newProduct, ...products];
           this.setState({
             products: cloneProducts,
@@ -189,11 +165,11 @@ class ProductsList extends Component {
           });
         })
         .catch(() => {
-          this.alertError();
+          alertError('Error Creating Product');
           this.clearInputs();
         });
     } else {
-      this.alertError();
+      alertError('Please fill all fields Correctly');
       this.clearInputs();
     }
   };

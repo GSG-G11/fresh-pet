@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 const deleteRequest = (id) => {
-  /// check it, it has error in console log
+
   Axios.delete(`/api/v1/products/product/${id}`)
     .then((data) => console.log(data))
     .catch((err) => console.log(err));
