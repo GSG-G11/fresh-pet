@@ -17,6 +17,19 @@ class App extends Component {
   state = {
     numberCartProduct: 0,
     cartProduct: [],
+    isLogin: false,
+  };
+
+  checkIsLogin = () => {
+    this.setState({ isLogin: JSON.parse(localStorage.getItem('isLogin')) });
+  };
+
+  authenticationHandler = (isLogin) => {
+    localStorage.setItem('isLogin', isLogin);
+    this.setState({
+      isLogin: isLogin,
+    });
+    this.alertSuccess(isLogin ? 'Login Success' : 'Logout Success');
   };
 
   updateNumberCartProduct = () => {
@@ -50,6 +63,7 @@ class App extends Component {
   componentDidMount() {
     this.updateNumberCartProduct();
     this.updateCartProduct();
+    this.checkIsLogin();
   }
 
   alertSuccess = (message) => {
@@ -76,11 +90,15 @@ class App extends Component {
   };
 
   render() {
-    const { numberCartProduct, cartProduct } = this.state;
+    const { numberCartProduct, cartProduct, isLogin } = this.state;
     return (
       <BrowserRouter>
         <div>
-          <Header numberCartProduct={numberCartProduct} />
+          <Header
+            isLogin={isLogin}
+            authenticationHandler={this.authenticationHandler}
+            numberCartProduct={numberCartProduct}
+          />
           <LandingImage />
           <Switch>
             <Route path='/product/:id' component={ProductDetails} />
@@ -100,6 +118,7 @@ class App extends Component {
               path='/'
               render={() => (
                 <ProductsList
+                  isLogin={isLogin}
                   alertSuccess={this.alertSuccess}
                   alertError={this.alertError}
                   updateNumberCartProduct={this.updateNumberCartProduct}

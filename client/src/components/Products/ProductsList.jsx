@@ -214,15 +214,15 @@ class ProductsList extends Component {
         image,
       })
         .then(({ data: { data } }) => {
-          const UpdateProducts = cloneProducts.find(
+          const updateProducts = cloneProducts.find(
             ({ id }) => productId === id,
           );
-          UpdateProducts.name = name;
-          UpdateProducts.description = description;
-          UpdateProducts.image = image;
-          UpdateProducts.price = price;
-          UpdateProducts.pet_category = petCategory;
-          UpdateProducts.sub_category = subCategory;
+          updateProducts.name = name;
+          updateProducts.description = description;
+          updateProducts.image = image;
+          updateProducts.price = price;
+          updateProducts.pet_category = petCategory;
+          updateProducts.sub_category = subCategory;
           this.clearInputs();
 
           alertSuccess('Product Updated Successfully');
@@ -250,8 +250,8 @@ class ProductsList extends Component {
       alertError,
       updateNumberCartProduct,
       updateCartProduct,
+      isLogin,
     } = this.props;
-    const componentsLookUp = { CreateProduct, UpdateProduct };
     const productsList = filteredProducts.map((product) => (
       <Product
         key={product.id}
@@ -262,9 +262,11 @@ class ProductsList extends Component {
         alertError={alertError}
         updateNumberCartProduct={updateNumberCartProduct}
         updateCartProduct={updateCartProduct}
+        isLogin={isLogin}
       />
     ));
 
+    const componentsLookUp = { CreateProduct, UpdateProduct };
     let renderComponent;
     if (componentName) {
       const SelectedComponent = componentsLookUp[componentName];
@@ -288,6 +290,7 @@ class ProductsList extends Component {
           handleSearch={this.handleSearch}
           handleSelect={this.handleSelect}
           openModalHandler={this.openModalHandler}
+          isLogin={isLogin}
         />
 
         <section className='products-section'>

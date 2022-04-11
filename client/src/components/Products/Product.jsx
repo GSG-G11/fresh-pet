@@ -20,6 +20,8 @@ const Product = (props) => {
     return true;
   };
 
+  const IsLogin = ({ isLogin }) => isLogin;
+
   return (
     <div className='card'>
       <h1 className='title'>{name}</h1>
@@ -33,21 +35,23 @@ const Product = (props) => {
       <p className='sub-category'>{sub_category}</p>
       <p className={`forPet ${pet_category}`}>{pet_category}</p>
 
-      {InCart(props) && (
-        <div className='btns'>
-          <AddToCard {...props} />
+      <div className='btns'>
+        {InCart(props) && <AddToCard {...props} />}
 
-          <button
-            className='edit-btn'
-            onClick={() =>
-              props.openEditModalHandler('UpdateProduct', props.product)
-            }>
-            <FontAwesomeIcon icon={faEdit} />
-          </button>
+        {InCart(props) && IsLogin(props) && (
+          <>
+            <button
+              className='edit-btn'
+              onClick={() =>
+                props.openEditModalHandler('UpdateProduct', props.product)
+              }>
+              <FontAwesomeIcon icon={faEdit} />
+            </button>
 
-          <Delete {...props} />
-        </div>
-      )}
+            <Delete {...props} />
+          </>
+        )}
+      </div>
 
       {!InCart(props) && (
         <button
