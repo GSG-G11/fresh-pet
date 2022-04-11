@@ -6,8 +6,8 @@ const CreateProduct = ({
   formInput: { name, description, petCategory, subCategory, price, image },
   hasErrorValidation,
 }) => {
-  const categories = ['all', 'Food', 'Accessories', 'Toy'];
-  const petCategories = ['all', 'cat', 'dog', 'horse', 'bird', 'fish'];
+  const categories = ['Food', 'Accessories', 'Toy'];
+  const petCategories = ['cat', 'dog', 'horse', 'bird', 'fish'];
   return (
     <div className={styles.container__modal__product}>
       <h1 className={styles.title__modal__product}> Create Product </h1>
