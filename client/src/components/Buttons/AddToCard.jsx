@@ -2,7 +2,7 @@ import React from 'react';
 
 const addToCartStorage = (props) => {
   const products = JSON.parse(localStorage.getItem('products'));
-  products.push(props.product);
+  products.push(props);
   localStorage.setItem('products', JSON.stringify(products));
 };
 const AddToCard = (props) => {

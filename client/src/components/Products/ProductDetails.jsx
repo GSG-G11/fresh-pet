@@ -17,7 +17,6 @@ class ProductDetails extends Component{
             description,
             price,
             pet_category,
-            sub_category,
             image} = this.state.singleProduct;
     
     return(

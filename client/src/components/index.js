@@ -2,6 +2,7 @@ import { Modal } from './Modal';
 import { CreateProduct, UpdateProduct } from './Forms';
 import { LandingImage, Header } from './Header';
 import { NotFound } from './NotFound';
+import { Cart } from './Cart';
 import {
   PetFilter,
   Product,
@@ -17,6 +18,7 @@ export {
   LandingImage,
   Header,
   NotFound,
+  Cart,
   PetFilter,
   Product,
   ProductDetails,
