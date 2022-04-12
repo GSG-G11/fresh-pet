@@ -15,17 +15,18 @@
 
 }
 .logo-img {
-  width: 120px;
+  width: 8.2rem;
 
 }
 
 .signin-cart-holder {
   display: flex;
 
+
 }
 .signin-btn{
 background-color: #FF5423;
-padding: 10px 30px;
+padding: 0.6rem 1.2rem;
 border-radius: 25px;
 border: none;
 color: #fff ;
@@ -41,16 +42,45 @@ transition: all 1s ease-in-out;
     align-items: center;
     position: relative;
     color: #766a6a;
+    background-color: #FF5423;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50%
 
 }
 .icons .product-num{
     position: absolute;
-    top: .5rem;
-    left: .8rem;
-    background-color: #fb6f59;
+    top: 0rem;
+    left: 3rem;
+    background-color: #ff0000;
     color: #fff;
-    width: 20px;
-    height: 20px;
+    font-size: 0.8rem;
+    width: 1.2rem;
+    height: 1.2rem;
     border-radius: 50%;
     text-align: center;
+}
+
+.cart-icon {
+  color: white;
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 80.5%;
+  }
+  .signin-btn{
+    margin: auto 32px;
+    font-size: 1.2rem;
+  }
+}
+  
+@media screen and (max-width: 768px){
+  html {
+    font-size: 70.5%;
+  }
+
+  .icons {
+    padding: 0.2rem 0.5rem;
+  }
 }
