@@ -59,9 +59,17 @@ transition: all 1s ease-in-out;
   position: relative;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .dog-img{
   object-fit: cover;
 }
 
+.bone-img {
+  max-width: 100%;
+  width: 27rem;
+  position: absolute;
+  right: calc(50% - 28.5rem);
+  bottom: calc(50% - 18.5rem);
+}
