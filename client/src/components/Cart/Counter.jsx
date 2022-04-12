@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Delete from '../Buttons/Delete';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class Counter extends Component {
   state = {
@@ -31,7 +32,7 @@ class Counter extends Component {
           <button className='increase quality-btn' count={count*product.price} onClick = {this.increase}>+</button>
         </div>
         <span className='price-total'>${(product.price * count).toFixed(2)}</span>
-        <FontAwesomeIcon icon={faTrash} />
+        <Delete product={product}/>
       </li>
       </>
     )
