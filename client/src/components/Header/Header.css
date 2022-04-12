@@ -89,11 +89,19 @@ transition: all 1s ease-in-out;
     margin: auto 32px;
     font-size: 1.2rem;
   }
+  .slang {
+    font-size: 3.2rem;
+  }
 }
   
 @media screen and (max-width: 768px){
   html {
     font-size: 70.5%;
+  }
+
+  .slang {
+    font-size: 2.2rem;
+
   }
 
   .icons {
