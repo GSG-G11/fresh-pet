@@ -7,8 +7,14 @@
 .inputs-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-
+@media (max-width: 768px) {
+  .inputs-section {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
 .inputs-section input {
   border: none;
   border-bottom: 1px solid #ccc;
@@ -44,7 +50,11 @@
   text-align: center;
   padding-bottom: 3.2rem;
 }
-
+@media (max-width: 768px) {
+  .products-section {
+    margin-top: 7.2rem;
+  }
+}
 .card {
   height: 100%;
   border-radius: 0.8rem;

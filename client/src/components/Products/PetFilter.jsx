@@ -38,7 +38,6 @@ const PetSelection = ({ handlePetSelection }) => {
 
   return (
     <div className='pet-selection'>
-      <div className='container'>
         <ul className='pets-list'>
           {petCategory.map(({ category, image, bgImage }) => {
             return (
@@ -57,7 +56,6 @@ const PetSelection = ({ handlePetSelection }) => {
             );
           })}
         </ul>
-      </div>
     </div>
   );
 };

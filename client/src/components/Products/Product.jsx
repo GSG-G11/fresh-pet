@@ -56,10 +56,8 @@ const Product = (props) => {
 
       {!InCart(props) && (
         <button
-          className="delete-btn"
-          onClick={() => props.deleteCartProduct(id)}
-        >
-          <span className="text-delete-btn">Remove Form Cart</span>
+          className='delete-btn'
+          onClick={() => props.deleteCartProduct(id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>
       )}

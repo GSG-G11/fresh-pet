@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
+import PriceFilter from './PriceFilter';
 
 import {Modal, CreateProduct, UpdateProduct, Product, ProductsFilter, PetFilter} from '..';
 
@@ -9,6 +10,7 @@ class ProductsList extends Component {
   state = {
     products: [],
     filteredProducts: [],
+    priceRange: [0, 200],
     isOpen: false,
     componentName: '',
     formInput: {
@@ -39,7 +41,18 @@ class ProductsList extends Component {
     }
   }
 
+  handlePriceRange = (min, max) => {
+    this.setState({priceRange: [min, max]})
+    const { products } = this.state;
+    const filteredProducts = products.filter((product) => {
+      return product.price >= min && product.price <= max;
+    });
+    this.setState({ filteredProducts });
+  }
+
+
   handlePetSelection = pet => {
+
     if (pet === 'all') {
       this.setState({filteredProducts: this.state.products});
       return;
@@ -229,11 +242,24 @@ class ProductsList extends Component {
   };
 
   render() {
-    const {filteredProducts, isOpen, componentName, hasErrorValidation, formInput} =
-      this.state;
-    const {alertSuccess, alertError, updateNumberCartProduct, updateCartProduct, isLogin} =
-      this.props;
+    const {
+      filteredProducts,
+      isOpen,
+      componentName,
+      hasErrorValidation,
+      formInput,
+      priceRange,
+    } = this.state;
+    const {
+      alertSuccess,
+      alertError,
+      updateNumberCartProduct,
+      updateCartProduct,
+      isLogin,
+    } = this.props;
+
     const productsList = filteredProducts.map(product => (
+
       <Product
         key={product.id}
         product={product}
@@ -273,10 +299,17 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
           isLogin={isLogin}
         />
+        <PriceFilter priceRange={priceRange} handlePriceRange={this.handlePriceRange}/>
+        <section className='products-section'>
+          {this.state.filteredProducts.length === 0 && (
+            <h1>No Products Found</h1>
+          )}
+
 
         <section className="products-section" id="products">
           {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
           {!this.state.products.length && <div class="loader">Loading...</div>}
+
           {productsList}
         </section>
 
