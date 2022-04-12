@@ -129,3 +129,20 @@ ol {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--blue);
 }
+
+.logo404{
+  position: absolute;
+    z-index: 5555;
+    top: 30px;
+    left: 30px;
+}
+.img404{
+  position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    object-fit: contain;
+    width: 100vw;
+    background-color: #fbb82e;
+    z-index: 111;
+}
