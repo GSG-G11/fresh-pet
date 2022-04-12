@@ -24,8 +24,16 @@
   border-bottom: 1px solid #ccc;
   width: 14rem;
   cursor: pointer;
-  font-size: 0.8rem;
-  outline: none;
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 25px;
+  outline: gray;
+  margin: auto 5px;
+  transition:  all ease-out 2s;
+}
+
+.inputs-section select option{
+  background-color: #DDDDDD;
 }
 
 .products-section {
