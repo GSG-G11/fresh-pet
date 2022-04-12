@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap');
 :root{
   --orange: #FF5423,
   --light-orange: #fb6f59,
@@ -67,6 +68,17 @@ transition: all 1s ease-in-out;
 
 .bone-img {
   cursor: pointer;
+}
+
+.slang {
+  position: absolute;
+  top: 45%;
+  padding-left: 4.8rem;
+  font-size: 5.2rem;
+  transform: translateY(-50%);
+  color: white;
+  letter-spacing: 1.8px;
+  font-family: 'Beau Rivage', cursive;
 }
 
 @media screen and (max-width: 1024px) {
