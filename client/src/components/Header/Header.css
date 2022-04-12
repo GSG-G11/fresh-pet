@@ -68,6 +68,37 @@ transition: all 1s ease-in-out;
 
 .bone-img {
   cursor: pointer;
+  animation: bone-img-animation 1s infinite;
+  transition: all 1s ease-in-out;
+}
+
+.bone-img:hover {
+  animation: none;
+  animation: scale 1s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bone-img-animation {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    
+  }
+  50% {
+    transform: translateY(0.5rem) rotate(8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 .slang {
@@ -79,6 +110,22 @@ transition: all 1s ease-in-out;
   color: white;
   letter-spacing: 1.8px;
   font-family: 'Beau Rivage', cursive;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(-50%);
+  }
 }
 
 @media screen and (max-width: 1024px) {
