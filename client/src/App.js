@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import React, {Component} from 'react';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {
   Header,
@@ -11,6 +11,8 @@ import {
   Cart,
   ProductsList,
   ProductDetails,
+  Modal,
+  LoginForm,
 } from './components';
 
 class App extends Component {
@@ -18,18 +20,8 @@ class App extends Component {
     numberCartProduct: 0,
     cartProduct: [],
     isLogin: false,
-  };
-
-  checkIsLogin = () => {
-    this.setState({ isLogin: JSON.parse(localStorage.getItem('isLogin')) });
-  };
-
-  authenticationHandler = (isLogin) => {
-    localStorage.setItem('isLogin', isLogin);
-    this.setState({
-      isLogin: isLogin,
-    });
-    this.alertSuccess(isLogin ? 'Login Success' : 'Logout Success');
+    isOpenModalAuth: false,
+    username: '',
   };
 
   updateNumberCartProduct = () => {
@@ -45,11 +37,9 @@ class App extends Component {
     });
   };
 
-  deleteCartProduct = (productId) => {
-    const { cartProduct } = this.state;
-    const filteredCartProducts = cartProduct.filter(
-      ({ id }) => id !== productId,
-    );
+  deleteCartProduct = productId => {
+    const {cartProduct} = this.state;
+    const filteredCartProducts = cartProduct.filter(({id}) => id !== productId);
 
     localStorage.setItem('products', JSON.stringify(filteredCartProducts));
 
@@ -66,7 +56,7 @@ class App extends Component {
     this.checkIsLogin();
   }
 
-  alertSuccess = (message) => {
+  alertSuccess = message => {
     return toast.success(message, {
       position: 'top-right',
       autoClose: 5000,
@@ -77,7 +67,7 @@ class App extends Component {
       progress: undefined,
     });
   };
-  alertError = (message) => {
+  alertError = message => {
     return toast.error(message, {
       position: 'top-right',
       autoClose: 5000,
@@ -89,22 +79,91 @@ class App extends Component {
     });
   };
 
+  openModalAuthHandler = (isOpen) => {
+    this.setState({
+      isOpenModalAuth: isOpen,
+    });
+  };
+
+  checkIsLogin = () => {
+    this.setState({
+      isLogin: JSON.parse(localStorage.getItem('isLogin')) ?? false,
+    });
+  };
+
+  handleLoginIn = (username) => {
+    if (!username) {
+      this.alertError('Please enter your username');
+      this.openModalAuthHandler(false);
+      this.setState({
+        isLogin: false,
+        username: '',
+      });
+      return;
+    }
+
+    localStorage.setItem('isLogin', true);
+    localStorage.setItem('username', username);
+    this.setState({
+      isLogin: true,
+      username: username,
+    });
+    this.alertSuccess('Login SuccessFully');
+    this.openModalAuthHandler(false);
+  };
+
+  handleLoginOut = () => {
+    localStorage.removeItem('isLogin');
+    localStorage.removeItem('username');
+    this.setState({
+      isLogin: false,
+      username: '',
+    });
+    this.alertSuccess('Logout SuccessFully');
+    this.openModalAuthHandler(false);
+  };
+
+  handleChangeUserName = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
-    const { numberCartProduct, cartProduct, isLogin } = this.state;
+    const {
+      numberCartProduct,
+      cartProduct,
+      isLogin,
+      isOpenModalAuth,
+      username,
+    } = this.state;
+
+    const usernameLoggedIn = localStorage.getItem('username');
+
     return (
       <BrowserRouter>
         <div>
           <Header
             isLogin={isLogin}
-            authenticationHandler={this.authenticationHandler}
+            usernameLoggedIn={usernameLoggedIn}
+            handleLoginOut={this.handleLoginOut}
             numberCartProduct={numberCartProduct}
+            openModalAuthHandler={this.openModalAuthHandler}
           />
           <LandingImage />
           <Switch>
-            <Route path='/product/:id' component={ProductDetails} />
             <Route
-              path='/cart'
-              render={(props) => (
+              path="/product/:id"
+              render={props => (
+                <ProductDetails
+                  alertSuccess={this.alertSuccess}
+                  alertError={this.alertError}
+                  {...props}
+                />
+              )}
+            />
+            <Route
+              path="/cart"
+              render={props => (
                 <Cart
                   cartProduct={cartProduct}
                   updateCartProduct={this.updateCartProduct}
@@ -113,9 +172,9 @@ class App extends Component {
                 />
               )}
             />
-            <Route path='/notFound' component={NotFound} />
+            <Route path="/notFound" component={NotFound} />
             <Route
-              path='/'
+              path="/"
               render={() => (
                 <ProductsList
                   isLogin={isLogin}
@@ -128,11 +187,11 @@ class App extends Component {
               )}
               exact
             />
-            <Redirect to='notFound' />
+            <Redirect to="notFound" />
           </Switch>
 
           <ToastContainer
-            position='top-right'
+            position="top-right"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -142,6 +201,18 @@ class App extends Component {
             draggable
             pauseOnHover
           />
+
+          {isOpenModalAuth && (
+            <Modal
+              username={username}
+              closeModalHandler={() => this.openModalAuthHandler(false)}>
+              <LoginForm
+                handleLoginIn={this.handleLoginIn}
+                handleChangeUserName={this.handleChangeUserName}
+                username={username}
+              />
+            </Modal>
+          )}
         </div>
       </BrowserRouter>
     );

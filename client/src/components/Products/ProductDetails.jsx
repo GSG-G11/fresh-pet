@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 class ProductDetails extends Component {
   state = {
-    singleProduct: {},
+    singleProduct: '',
   };
   componentDidMount() {
     const {id} = this.props.match.params;
@@ -16,14 +16,9 @@ class ProductDetails extends Component {
       .catch(err => console.log(err));
   }
 
-  render(){
-    const {name,
-            description,
-            price,
-            pet_category,
-            image} = this.state.singleProduct;
-    
-    return(
+  render() {
+    const {name, description, price, pet_category, image} = this.state.singleProduct;
+    const productDetails = (
       <div className="product-details">
         <div className="container">
           <Link to="/">
@@ -49,10 +44,20 @@ class ProductDetails extends Component {
                 {price}
                 <span className="free">Free Delivery</span>
               </p>
-              <AddToCard />
+              <AddToCard
+                product={this.state.singleProduct}
+                alertSuccess={this.props.alertSuccess}
+                alertError={this.props.alertError}
+              />
             </div>
           </div>
         </div>
+      </div>
+    );
+    return (
+      <div>
+        {!this.state.singleProduct && <div class="loader">Loading...</div>}
+        {this.state.singleProduct && productDetails}
       </div>
     );
   }

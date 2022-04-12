@@ -305,6 +305,11 @@ class ProductsList extends Component {
             <h1>No Products Found</h1>
           )}
 
+
+        <section className="products-section" id="products">
+          {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
+          {!this.state.products.length && <div class="loader">Loading...</div>}
+
           {productsList}
         </section>
 

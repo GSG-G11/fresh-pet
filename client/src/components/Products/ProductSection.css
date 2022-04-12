@@ -35,11 +35,11 @@
   border-radius: 25px;
   outline: gray;
   margin: auto 5px;
-  transition:  all ease-out 2s;
+  transition: all ease-out 2s;
 }
 
-.inputs-section select option{
-  background-color: #DDDDDD;
+.inputs-section select option {
+  background-color: #dddddd;
 }
 
 .products-section {
@@ -207,4 +207,5 @@
   justify-content: center;
   width: 100%;
   padding: 0 4.8rem;
+  margin-top: auto;
 }
