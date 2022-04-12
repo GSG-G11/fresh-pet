@@ -7,10 +7,10 @@
     "start": "cross-env NODE_ENV=production node server/server.js",
     "dev": "cross-env NODE_ENV=development nodemon server/server.js",
     "dev:client": "cd client && yarn start",
-    "build": "cross-env NODE_ENV=production node server/database/config/build.js",
-    "build:dev": "cross-env NODE_ENV=development node server/database/config/build.js",
+    "build-db": "cross-env NODE_ENV=production node server/database/config/build.js",
+    "build-db:dev": "cross-env NODE_ENV=development node server/database/config/build.js",
     "test": "jest",
-    "heroku-postbuild": "cd client && npm install yarn && yarn  && yarn run build"
+    "heroku-postbuild": "cd client && npm install yarn && yarn install && yarn run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
