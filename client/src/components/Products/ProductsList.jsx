@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import PriceFilter from './PriceFilter';
 
 import {
   Modal,
@@ -16,6 +17,7 @@ class ProductsList extends Component {
   state = {
     products: [],
     filteredProducts: [],
+    priceRange: [0, 200],
     isOpen: false,
     componentName: '',
     formInput: {
@@ -45,7 +47,14 @@ class ProductsList extends Component {
       this.setState({ filteredProducts: this.state.filteredProducts });
     }
   }
-
+  handlePriceRange = (min, max) => {
+    this.setState({priceRange: [min, max]})
+    const { products } = this.state;
+    const filteredProducts = products.filter((product) => {
+      return product.price >= min && product.price <= max;
+    });
+    this.setState({ filteredProducts });
+  }
   handlePetSelection = (pet) => {
     if (pet === 'all') {
       this.setState({ filteredProducts: this.state.products });
@@ -244,6 +253,7 @@ class ProductsList extends Component {
       componentName,
       hasErrorValidation,
       formInput,
+      priceRange,
     } = this.state;
     const {
       alertSuccess,
@@ -292,7 +302,7 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
           isLogin={isLogin}
         />
-
+        <PriceFilter priceRange={priceRange} handlePriceRange={this.handlePriceRange}/>
         <section className='products-section'>
           {this.state.filteredProducts.length === 0 && (
             <h1>No Products Found</h1>
