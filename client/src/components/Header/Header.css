@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap');
 :root{
   --orange: #FF5423,
   --light-orange: #fb6f59,
@@ -15,17 +16,18 @@
 
 }
 .logo-img {
-  width: 120px;
+  width: 8.2rem;
 
 }
 
 .signin-cart-holder {
   display: flex;
 
+
 }
 .signin-btn{
 background-color: #FF5423;
-padding: 10px 30px;
+padding: 0.6rem 1.2rem;
 border-radius: 25px;
 border: none;
 color: #fff ;
@@ -41,27 +43,131 @@ transition: all 1s ease-in-out;
     align-items: center;
     position: relative;
     color: #766a6a;
+    background-color: #FF5423;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50%
 
 }
 .icons .product-num{
     position: absolute;
-    top: .5rem;
-    left: .8rem;
-    background-color: #fb6f59;
+    top: 0rem;
+    left: 3rem;
+    background-color: #ff0000;
     color: #fff;
-    width: 20px;
-    height: 20px;
+    font-size: 0.8rem;
+    width: 1.2rem;
+    height: 1.2rem;
     border-radius: 50%;
     text-align: center;
 }
-.background-image {
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+
+.cart-icon {
+  color: white;
+  font-size: 1.2rem;
 }
 
-.dog-img{
-  object-fit: cover;
+.bone-img {
+  cursor: pointer;
+  animation: bone-img-animation 1s infinite;
+  transition: all 1s ease-in-out;
 }
 
+.bone-img:hover {
+  animation: none;
+  animation: scale 1s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bone-img-animation {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    
+  }
+  50% {
+    transform: translateY(0.5rem) rotate(8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.slang {
+  position: absolute;
+  top: 45%;
+  padding-left: 4.8rem;
+  font-size: 5.2rem;
+  transform: translateY(-50%);
+  color: white;
+  letter-spacing: 1.8px;
+  font-family: 'Beau Rivage', cursive;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 80.5%;
+  }
+  .signin-btn{
+    margin: auto 32px;
+    font-size: 1.2rem;
+  }
+  .slang {
+    font-size: 3.2rem;
+  }
+}
+  
+@media screen and (max-width: 768px){
+  html {
+    font-size: 70.5%;
+  }
+
+  .slang {
+    font-size: 2.2rem;
+
+  }
+
+  .icons {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media screen and (max-width: 520px){
+  html {
+    font-size: 60.5%;
+  }
+  .signin-btn{
+    margin: auto 16px;
+    font-size: 1rem;
+  }
+
+  .icons {
+    font-size: 1rem;
+    padding: 0.2rem 1rem;
+  }
+}

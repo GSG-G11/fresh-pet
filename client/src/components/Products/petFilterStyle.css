@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0.8rem;
 }
 .pet-item {
   position: relative;
   cursor: pointer;
 }
 .category-background {
-  width: 150px;
+  width: 9.2rem;
   border-radius: 50%;
 }
 .category-name,
@@ -22,4 +22,89 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+
+.background-image {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dog-img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.bone-img {
+  max-width: 100%;
+  width: 27rem;
+  position: absolute;
+  right: calc(50% - 28.5rem);
+  bottom: calc(50% - 18.5rem);
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 80.5%;
+  }
+
+  .pets-list {
+    flex-wrap: wrap;
+  }
+
+  .bone-img {
+    width: 25rem;
+    right: calc(50% - 25rem);
+    bottom: calc(50% - 15rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 70%;
+  }
+
+  .pets-list {
+    flex-wrap: wrap;
+  }
+
+  .bone-img {
+    width: 20rem;
+    right: calc(50% - 20rem);
+    bottom: calc(50% - 10rem);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  html {
+    font-size: 60%;
+  }
+
+  .pets-list {
+    flex-wrap: wrap;
+  }
+
+  .bone-img {
+    width: 18rem;
+    right: calc(50% - 19rem);
+    bottom: calc(50% - 10rem);
+  }
+}
+
+@media screen and (max-width: 455px) {
+  html {
+    font-size: 50%;
+  }
+
+  .pets-list {
+    flex-wrap: wrap;
+  }
+
+  .bone-img {
+    width: 15rem;
+    right: calc(50% - 15rem);
+    bottom: calc(50% - 10rem);
+  }
 }

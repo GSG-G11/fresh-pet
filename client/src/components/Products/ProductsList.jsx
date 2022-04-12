@@ -1,14 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Axios from 'axios';
 
-import {
-  Modal,
-  CreateProduct,
-  UpdateProduct,
-  Product,
-  ProductsFilter,
-  PetFilter,
-} from '..';
+import {Modal, CreateProduct, UpdateProduct, Product, ProductsFilter, PetFilter} from '..';
 
 import './ProductSection.css';
 
@@ -32,60 +25,60 @@ class ProductsList extends Component {
 
   componentDidMount() {
     fetch('/api/v1/products')
-      .then((res) => res.json())
-      .then((data) => this.setState({ products: data.products }));
+      .then(res => res.json())
+      .then(data => this.setState({products: data.products}));
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.products !== this.state.products) {
-      this.setState({ filteredProducts: this.state.products });
+      this.setState({filteredProducts: this.state.products});
     }
 
     if (prevState.filteredProducts !== this.state.filteredProducts) {
-      this.setState({ filteredProducts: this.state.filteredProducts });
+      this.setState({filteredProducts: this.state.filteredProducts});
     }
   }
 
-  handlePetSelection = (pet) => {
+  handlePetSelection = pet => {
     if (pet === 'all') {
-      this.setState({ filteredProducts: this.state.products });
+      this.setState({filteredProducts: this.state.products});
       return;
     }
-    const { products } = this.state;
-    const filteredProducts = products.filter((product) => {
+    const {products} = this.state;
+    const filteredProducts = products.filter(product => {
       return product.pet_category === pet;
     });
-    this.setState({ filteredProducts });
+    this.setState({filteredProducts});
   };
 
-  deleteHandler = (id) => {
-    const { products } = this.state;
-    const { alertSuccess } = this.props;
-    const filteredProducts = products.filter((product) => product.id !== id);
+  deleteHandler = id => {
+    const {products} = this.state;
+    const {alertSuccess} = this.props;
+    const filteredProducts = products.filter(product => product.id !== id);
     alertSuccess('Product Deleted Successfully');
-    this.setState({ products: filteredProducts });
+    this.setState({products: filteredProducts});
   };
 
-  handleSearch = (event) => {
+  handleSearch = event => {
     const searchValue = event.target.value.toLowerCase();
-    const { products } = this.state;
-    const filteredProducts = products.filter((product) => {
+    const {products} = this.state;
+    const filteredProducts = products.filter(product => {
       return product.name.toLowerCase().includes(searchValue);
     });
-    this.setState({ filteredProducts });
+    this.setState({filteredProducts});
   };
 
-  handleSelect = (event) => {
+  handleSelect = event => {
     const selectValue = event.target.value.toLowerCase();
     if (selectValue === 'all') {
-      this.setState({ filteredProducts: this.state.products });
+      this.setState({filteredProducts: this.state.products});
       return;
     }
-    const { products } = this.state;
-    const filteredProducts = products.filter((product) => {
+    const {products} = this.state;
+    const filteredProducts = products.filter(product => {
       return product.sub_category === selectValue;
     });
-    this.setState({ filteredProducts });
+    this.setState({filteredProducts});
   };
 
   clearInputs = () => {
@@ -104,18 +97,18 @@ class ProductsList extends Component {
     });
   };
 
-  closeModalHandler = (isOpen) => {
+  closeModalHandler = isOpen => {
     this.setState(
       {
         isOpen: !isOpen,
       },
       () => {
         this.clearInputs();
-      },
+      }
     );
   };
 
-  openModalHandler = (componentName) => {
+  openModalHandler = componentName => {
     this.setState({
       isOpen: !this.state.isOpen,
       componentName: componentName,
@@ -124,7 +117,7 @@ class ProductsList extends Component {
 
   openEditModalHandler = (
     componentName,
-    { id, name, price, image, description, pet_category, sub_category },
+    {id, name, price, image, description, pet_category, sub_category}
   ) => {
     this.setState({
       isOpen: !this.state.isOpen,
@@ -141,18 +134,18 @@ class ProductsList extends Component {
     });
   };
 
-  handleChange = (event) => {
-    const { formInput } = this.state;
-    const { name, value } = event.target;
-    this.setState({ formInput: { ...formInput, [name]: value } });
+  handleChange = event => {
+    const {formInput} = this.state;
+    const {name, value} = event.target;
+    this.setState({formInput: {...formInput, [name]: value}});
   };
 
   handleCreateProduct = () => {
     const {
       products,
-      formInput: { name, description, petCategory, subCategory, price, image },
+      formInput: {name, description, petCategory, subCategory, price, image},
     } = this.state;
-    const { alertSuccess, alertError } = this.props;
+    const {alertSuccess, alertError} = this.props;
     let cloneProducts = [...products];
     if (
       name.length &&
@@ -170,7 +163,7 @@ class ProductsList extends Component {
         price,
         image,
       })
-        .then(({ data: { data: newProduct } }) => {
+        .then(({data: {data: newProduct}}) => {
           alertSuccess('Product Created Successfully');
           cloneProducts = [newProduct, ...products];
           this.setState({
@@ -191,10 +184,10 @@ class ProductsList extends Component {
   handleUpdateProduct = () => {
     const {
       products,
-      formInput: { name, description, petCategory, subCategory, price, image },
+      formInput: {name, description, petCategory, subCategory, price, image},
       productId,
     } = this.state;
-    const { alertSuccess, alertError } = this.props;
+    const {alertSuccess, alertError} = this.props;
     let cloneProducts = [...products];
 
     if (
@@ -213,10 +206,8 @@ class ProductsList extends Component {
         price,
         image,
       })
-        .then(({ data: { data } }) => {
-          const updateProducts = cloneProducts.find(
-            ({ id }) => productId === id,
-          );
+        .then(({data: {data}}) => {
+          const updateProducts = cloneProducts.find(({id}) => productId === id);
           updateProducts.name = name;
           updateProducts.description = description;
           updateProducts.image = image;
@@ -238,21 +229,11 @@ class ProductsList extends Component {
   };
 
   render() {
-    const {
-      filteredProducts,
-      isOpen,
-      componentName,
-      hasErrorValidation,
-      formInput,
-    } = this.state;
-    const {
-      alertSuccess,
-      alertError,
-      updateNumberCartProduct,
-      updateCartProduct,
-      isLogin,
-    } = this.props;
-    const productsList = filteredProducts.map((product) => (
+    const {filteredProducts, isOpen, componentName, hasErrorValidation, formInput} =
+      this.state;
+    const {alertSuccess, alertError, updateNumberCartProduct, updateCartProduct, isLogin} =
+      this.props;
+    const productsList = filteredProducts.map(product => (
       <Product
         key={product.id}
         product={product}
@@ -266,7 +247,7 @@ class ProductsList extends Component {
       />
     ));
 
-    const componentsLookUp = { CreateProduct, UpdateProduct };
+    const componentsLookUp = {CreateProduct, UpdateProduct};
     let renderComponent;
     if (componentName) {
       const SelectedComponent = componentsLookUp[componentName];
@@ -284,7 +265,7 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className='container'>
+      <div className="container">
         <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
@@ -293,10 +274,8 @@ class ProductsList extends Component {
           isLogin={isLogin}
         />
 
-        <section className='products-section'>
-          {this.state.filteredProducts.length === 0 && (
-            <h1>No Products Found</h1>
-          )}
+        <section className="products-section" id="products">
+          {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
           {productsList}
         </section>
 
