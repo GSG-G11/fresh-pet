@@ -16,14 +16,9 @@ class ProductDetails extends Component {
       .catch(err => console.log(err));
   }
 
-  render(){
-    const {name,
-            description,
-            price,
-            pet_category,
-            image} = this.state.singleProduct;
-    
-    return(
+  render() {
+    const {name, description, price, pet_category, image} = this.state.singleProduct;
+    return (
       <div className="product-details">
         <div className="container">
           <Link to="/">
@@ -49,7 +44,11 @@ class ProductDetails extends Component {
                 {price}
                 <span className="free">Free Delivery</span>
               </p>
-              <AddToCard />
+              <AddToCard
+                product={this.state.singleProduct}
+                alertSuccess={this.props.alertSuccess}
+                alertError={this.props.alertError}
+              />
             </div>
           </div>
         </div>
