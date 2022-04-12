@@ -12,7 +12,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 3.2rem;
+  padding: 0.5rem 3.2rem;
 
 }
 .logo-img {
@@ -44,19 +44,32 @@ transition: all 1s ease-in-out;
     position: relative;
     color: #766a6a;
     background-color: #FF5423;
-    padding: 0.6rem 1.5rem;
-    border-radius: 50%
+    padding: 0.4rem 1.3rem;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+ .icons-logout{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #766a6a;
+    background-color: #FABC4D;
+    padding: 0.4rem 1.3rem;
+    border-radius: 50%;
+    cursor: pointer;
 
 }
 .icons .product-num{
     position: absolute;
     top: 0rem;
     left: 3rem;
-    background-color: #ff0000;
-    color: #fff;
+    background-color: #956464;
+    color: #ffffff;
     font-size: 0.8rem;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.3rem;
+    height: 1.3rem;
     border-radius: 50%;
     text-align: center;
 }
@@ -111,6 +124,11 @@ transition: all 1s ease-in-out;
   letter-spacing: 1.8px;
   font-family: 'Beau Rivage', cursive;
   animation: fadeIn 1.5s ease-in-out;
+}
+
+.icons-card{
+  display: flex;
+  gap: 1rem;
 }
 
 
