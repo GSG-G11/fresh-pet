@@ -1,5 +1,5 @@
 import { Modal } from './Modal';
-import { CreateProduct, UpdateProduct } from './Forms';
+import { CreateProduct, UpdateProduct, LoginForm } from './Forms';
 import { LandingImage, Header } from './Header';
 import { NotFound } from './NotFound';
 import { Cart } from './Cart';
@@ -28,4 +28,5 @@ export {
   ProductsList,
   AddToCard,
   Delete,
+  LoginForm,
 };

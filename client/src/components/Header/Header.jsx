@@ -4,7 +4,13 @@ import { ImCart } from 'react-icons/im';
 import { FiLogOut } from 'react-icons/fi';
 import './Header.css';
 
-const Header = ({ numberCartProduct, isLogin, authenticationHandler }) => {
+const Header = ({
+  numberCartProduct,
+  isLogin,
+  openModalAuthHandler,
+  handleLoginOut,
+  usernameLoggedIn,
+}) => {
   return (
     <header className='header'>
       <Link to={'/'} className='logo-img'>
@@ -14,10 +20,11 @@ const Header = ({ numberCartProduct, isLogin, authenticationHandler }) => {
         {!isLogin && (
           <button
             className='signin-btn'
-            onClick={() => authenticationHandler(true)}>
+            onClick={() => openModalAuthHandler(true)}>
             Sign in
           </button>
         )}
+        {isLogin && <button className='signin-btn'>{usernameLoggedIn}</button>}
 
         <div className='icons-card'>
           <Link className='icons' to={'/cart'}>
@@ -25,11 +32,8 @@ const Header = ({ numberCartProduct, isLogin, authenticationHandler }) => {
             <span className='product-num'>{numberCartProduct}</span>
           </Link>
           {isLogin && (
-            <div className='icons-logout'>
-              <FiLogOut
-                className='cart-icon'
-                onClick={() => authenticationHandler(false)}
-              />
+            <div className='icons-logout' onClick={handleLoginOut}>
+              <FiLogOut className='cart-icon' />
             </div>
           )}
         </div>

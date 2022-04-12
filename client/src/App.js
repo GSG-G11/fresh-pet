@@ -11,6 +11,8 @@ import {
   Cart,
   ProductsList,
   ProductDetails,
+  Modal,
+  LoginForm,
 } from './components';
 
 class App extends Component {
@@ -18,18 +20,8 @@ class App extends Component {
     numberCartProduct: 0,
     cartProduct: [],
     isLogin: false,
-  };
-
-  checkIsLogin = () => {
-    this.setState({ isLogin: JSON.parse(localStorage.getItem('isLogin')) });
-  };
-
-  authenticationHandler = (isLogin) => {
-    localStorage.setItem('isLogin', isLogin);
-    this.setState({
-      isLogin: isLogin,
-    });
-    this.alertSuccess(isLogin ? 'Login Success' : 'Logout Success');
+    isOpenModalAuth: false,
+    username: '',
   };
 
   updateNumberCartProduct = () => {
@@ -89,15 +81,75 @@ class App extends Component {
     });
   };
 
+  openModalAuthHandler = (isOpen) => {
+    this.setState({
+      isOpenModalAuth: isOpen,
+    });
+  };
+
+  checkIsLogin = () => {
+    this.setState({
+      isLogin: JSON.parse(localStorage.getItem('isLogin')) ?? false,
+    });
+  };
+
+  handleLoginIn = (username) => {
+    if (!username) {
+      this.alertError('Please enter your username');
+      this.openModalAuthHandler(false);
+      this.setState({
+        isLogin: false,
+        username: '',
+      });
+      return;
+    }
+
+    localStorage.setItem('isLogin', true);
+    localStorage.setItem('username', username);
+    this.setState({
+      isLogin: true,
+      username: username,
+    });
+    this.alertSuccess('Login SuccessFully');
+    this.openModalAuthHandler(false);
+  };
+
+  handleLoginOut = () => {
+    localStorage.removeItem('isLogin');
+    localStorage.removeItem('username');
+    this.setState({
+      isLogin: false,
+      username: '',
+    });
+    this.alertSuccess('Logout SuccessFully');
+    this.openModalAuthHandler(false);
+  };
+
+  handleChangeUserName = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
-    const { numberCartProduct, cartProduct, isLogin } = this.state;
+    const {
+      numberCartProduct,
+      cartProduct,
+      isLogin,
+      isOpenModalAuth,
+      username,
+    } = this.state;
+
+    const usernameLoggedIn = localStorage.getItem('username');
+
     return (
       <BrowserRouter>
         <div>
           <Header
             isLogin={isLogin}
-            authenticationHandler={this.authenticationHandler}
+            usernameLoggedIn={usernameLoggedIn}
+            handleLoginOut={this.handleLoginOut}
             numberCartProduct={numberCartProduct}
+            openModalAuthHandler={this.openModalAuthHandler}
           />
           <LandingImage />
           <Switch>
@@ -142,6 +194,18 @@ class App extends Component {
             draggable
             pauseOnHover
           />
+
+          {isOpenModalAuth && (
+            <Modal
+              username={username}
+              closeModalHandler={() => this.openModalAuthHandler(false)}>
+              <LoginForm
+                handleLoginIn={this.handleLoginIn}
+                handleChangeUserName={this.handleChangeUserName}
+                username={username}
+              />
+            </Modal>
+          )}
         </div>
       </BrowserRouter>
     );
