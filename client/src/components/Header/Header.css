@@ -85,6 +85,22 @@ transition: all 1s ease-in-out;
   }
 
   .icons {
-    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media screen and (max-width: 520px){
+  html {
+    font-size: 60.5%;
+  }
+  .signin-btn{
+    margin: auto 16px;
+    font-size: 1rem;
+  }
+
+  .icons {
+    font-size: 1rem;
+    padding: 0.2rem 1rem;
   }
 }
