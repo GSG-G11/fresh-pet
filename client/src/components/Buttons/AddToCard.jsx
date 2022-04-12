@@ -1,6 +1,6 @@
 import React from 'react';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const addToCartStorage = ({
   product,
@@ -9,8 +9,9 @@ const addToCartStorage = ({
   updateNumberCartProduct,
   updateCartProduct,
 }) => {
+  console.log(product);
   let products = JSON.parse(localStorage.getItem('products'));
-  const firstProduct = products.find(({ id }) => id === product.id);
+  const firstProduct = products.find(({id}) => id === product.id);
 
   if (firstProduct) {
     alertError('Product already in cart');
@@ -22,9 +23,9 @@ const addToCartStorage = ({
     updateCartProduct();
   }
 };
-const AddToCard = (props) => {
+const AddToCard = props => {
   return (
-    <button className='add-to-cart' onClick={() => addToCartStorage(props)}>
+    <button className="add-to-cart" onClick={() => addToCartStorage(props)}>
       <FontAwesomeIcon icon={faCartShopping} />
     </button>
   );
