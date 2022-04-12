@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 class ProductDetails extends Component {
   state = {
-    singleProduct: {},
+    singleProduct: '',
   };
   componentDidMount() {
     const {id} = this.props.match.params;
@@ -18,7 +18,7 @@ class ProductDetails extends Component {
 
   render() {
     const {name, description, price, pet_category, image} = this.state.singleProduct;
-    return (
+    const productDetails = (
       <div className="product-details">
         <div className="container">
           <Link to="/">
@@ -52,6 +52,12 @@ class ProductDetails extends Component {
             </div>
           </div>
         </div>
+      </div>
+    );
+    return (
+      <div>
+        {!this.state.singleProduct && <div class="loader">Loading...</div>}
+        {this.state.singleProduct && productDetails}
       </div>
     );
   }
