@@ -23,28 +23,29 @@ const Product = (props) => {
   const IsLogin = ({ isLogin }) => isLogin;
 
   return (
-    <div className='card'>
-      <h1 className='title'>{name}</h1>
-      <p className='description'>{description}</p>
-      <div className='product-image'>
+    <div className="card">
+      <div className="product-image">
         <Link to={`/product/${id}`}>
-          <img src={image} alt='product' />
+          <img src={image} alt="product" />
         </Link>
+        <h1 className="title">{name}</h1>
+        <p className="description">{description}</p>
       </div>
-      <p className='price'>{price}$</p>
-      <p className='sub-category'>{sub_category}</p>
+      <p className="price">{price}$</p>
+      <p className="sub-category">{sub_category}</p>
       <p className={`forPet ${pet_category}`}>{pet_category}</p>
 
-      <div className='btns'>
+      <div className="btns">
         {InCart(props) && <AddToCard {...props} />}
 
         {InCart(props) && IsLogin(props) && (
           <>
             <button
-              className='edit-btn'
+              className="edit-btn"
               onClick={() =>
                 props.openEditModalHandler('UpdateProduct', props.product)
-              }>
+              }
+            >
               <FontAwesomeIcon icon={faEdit} />
             </button>
 

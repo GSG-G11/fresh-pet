@@ -30,8 +30,16 @@
   border-bottom: 1px solid #ccc;
   width: 14rem;
   cursor: pointer;
-  font-size: 0.8rem;
-  outline: none;
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 25px;
+  outline: gray;
+  margin: auto 5px;
+  transition:  all ease-out 2s;
+}
+
+.inputs-section select option{
+  background-color: #DDDDDD;
 }
 
 .products-section {
@@ -63,7 +71,6 @@
 .card .title {
   font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 4.2rem;
 }
 
 .card .description {
@@ -73,7 +80,7 @@
 
 .card img {
   max-width: 100%;
-  margin-top: 1rem;
+  margin-top: 4rem;
 }
 
 .card .price {
@@ -139,6 +146,7 @@
   font-weight: bolder;
   font-size: 1.1rem;
   transition: all 0.3s ease-in-out;
+  margin-left: 0.5rem;
 }
 .delete-btn {
   padding: 0.4rem 0.8rem;
@@ -168,12 +176,12 @@
   padding: 0.4rem 0.8rem;
   border: none;
   border-radius: 7px;
-
   color: white;
   background-color: orange;
   cursor: pointer;
   margin-bottom: 1.2rem;
   transition: all 0.3s ease-in-out;
+  margin-left: 0.5rem;
 }
 
 .edit-btn:hover {
@@ -196,7 +204,7 @@
 .btns {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   padding: 0 4.8rem;
 }
