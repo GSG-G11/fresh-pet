@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import {ToastContainer} from 'react-toastify';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import {
   Header,
@@ -38,9 +38,11 @@ class App extends Component {
     });
   };
 
-  deleteCartProduct = productId => {
-    const {cartProduct} = this.state;
-    const filteredCartProducts = cartProduct.filter(({id}) => id !== productId);
+  deleteCartProduct = (productId) => {
+    const { cartProduct } = this.state;
+    const filteredCartProducts = cartProduct.filter(
+      ({ id }) => id !== productId,
+    );
 
     localStorage.setItem('products', JSON.stringify(filteredCartProducts));
 
@@ -51,13 +53,22 @@ class App extends Component {
     this.updateNumberCartProduct();
   };
 
+  checkOut = () => {
+    localStorage.setItem('products', JSON.stringify([]));
+    this.setState({ cartProduct: [] });
+    this.updateNumberCartProduct();
+    this.alertSuccess(
+      'Nice to see you, this product will be delivered to you as soon as possible',
+    );
+  };
+
   componentDidMount() {
     this.updateNumberCartProduct();
     this.updateCartProduct();
     this.checkIsLogin();
   }
 
-  alertSuccess = message => {
+  alertSuccess = (message) => {
     return toast.success(message, {
       position: 'top-right',
       autoClose: 5000,
@@ -68,7 +79,7 @@ class App extends Component {
       progress: undefined,
     });
   };
-  alertError = message => {
+  alertError = (message) => {
     return toast.error(message, {
       position: 'top-right',
       autoClose: 5000,
@@ -153,8 +164,8 @@ class App extends Component {
           <LandingImage />
           <Switch>
             <Route
-              path="/product/:id"
-              render={props => (
+              path='/product/:id'
+              render={(props) => (
                 <ProductDetails
                   alertSuccess={this.alertSuccess}
                   alertError={this.alertError}
@@ -163,19 +174,20 @@ class App extends Component {
               )}
             />
             <Route
-              path="/cart"
-              render={props => (
+              path='/cart'
+              render={(props) => (
                 <Cart
                   cartProduct={cartProduct}
                   updateCartProduct={this.updateCartProduct}
                   deleteCartProduct={this.deleteCartProduct}
+                  checkOut={this.checkOut}
                   {...props}
                 />
               )}
             />
-            <Route path="/notFound" component={NotFound} />
+            <Route path='/notFound' component={NotFound} />
             <Route
-              path="/"
+              path='/'
               render={() => (
                 <ProductsList
                   isLogin={isLogin}
@@ -188,11 +200,11 @@ class App extends Component {
               )}
               exact
             />
-            <Redirect to="notFound" />
+            <Redirect to='notFound' />
           </Switch>
           <Footer />
           <ToastContainer
-            position="top-right"
+            position='top-right'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}

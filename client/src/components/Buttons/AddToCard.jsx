@@ -9,13 +9,14 @@ const addToCartStorage = ({
   updateNumberCartProduct,
   updateCartProduct,
 }) => {
-  console.log(product);
+
   let products = JSON.parse(localStorage.getItem('products'));
   const firstProduct = products.find(({id}) => id === product.id);
 
   if (firstProduct) {
     alertError('Product already in cart');
   } else {
+    product.quantity = 1;
     products = [...products, product];
     localStorage.setItem('products', JSON.stringify(products));
     alertSuccess('Product added to cart');
