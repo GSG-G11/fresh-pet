@@ -11,6 +11,16 @@ class Cart extends Component {
     this.setState({ totalPrice: price });
   };
 
+  getTotalPrice = () => {
+    this.setState({
+      totalPrice: JSON.parse(localStorage.getItem('totalPrice')) ?? 0,
+    });
+  };
+
+  componentDidMount() {
+    this.getTotalPrice();
+  }
+
   render() {
     const { totalPrice } = this.state;
     const { cartProduct, checkOut } = this.props;
