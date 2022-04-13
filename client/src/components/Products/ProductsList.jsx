@@ -319,7 +319,6 @@ class ProductsList extends Component {
         <section className="products-section" id="products">
           {filteredProducts.length === 0 && <img src='../img/not-found.png' alt='no-product'/>}
           {!this.state.products.length && <div class="loader">Loading...</div>}
-
           {productsList}
         </section>
 
