@@ -5,8 +5,17 @@ import './cartStyle.css';
 
 class Cart extends Component{
   state = {
-    totalPrice: 1,
+    totalPrice: 0,
   };
+
+  updateTotalPrice = (price) => {
+    this.setState({totalPrice:price});
+  }
+
+  // CheckOut = () => {
+  //   this.setState({totalPrice:0});
+  //   localStorage.setItem('products', JSON.stringify([]));
+  // }
 
 render() {
     const { totalPrice } = this.state;
@@ -23,6 +32,7 @@ render() {
                     key={product.id}
                     product={product}
                     totalPrice={totalPrice}
+                    updateTotalPrice={this.updateTotalPrice}
                     {...this.props}
                   />
                 ))
@@ -35,6 +45,11 @@ render() {
                 Total Cost: <span>${totalPrice.toFixed(2)}</span>
               </h3>
             </div>
+              {/* <button
+                  className="delete-btn"
+                  onClick={() => this.CheckOut()}>
+                  Check out
+                </button> */}
           </section>
         </div>
       </>
