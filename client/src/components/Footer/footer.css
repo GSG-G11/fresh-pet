@@ -1,0 +1,16 @@
+.footer{
+  background-color: #fef737;
+  margin-top: 50px;
+  position: relative;
+  clip-path: ellipse(81% 100% at 32.64% 100%);
+}
+.footer > .logo-img{
+  position: absolute;
+    top: 33px;
+    left: 20px;
+}
+.footer .footer-img{
+  max-width: 100%;
+    width: 100%;
+    margin-top: 55px;
+}

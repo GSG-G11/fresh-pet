@@ -13,6 +13,7 @@ import {
   ProductDetails,
   Modal,
   LoginForm,
+  Footer,
 } from './components';
 
 class App extends Component {
@@ -189,7 +190,7 @@ class App extends Component {
             />
             <Redirect to="notFound" />
           </Switch>
-
+          <Footer />
           <ToastContainer
             position="top-right"
             autoClose={5000}
