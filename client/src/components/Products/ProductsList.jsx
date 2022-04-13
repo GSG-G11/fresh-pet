@@ -275,7 +275,6 @@ class ProductsList extends Component {
     })
 
     const productsList = filteredProducts.map(product => (
-
       <Product
         key={product.id}
         product={product}
@@ -318,7 +317,7 @@ class ProductsList extends Component {
         <PriceFilter priceRange={priceRange} handlePriceRange={this.handlePriceRange}/>
 
         <section className="products-section" id="products">
-          {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
+          {filteredProducts.length === 0 && <img src='../img/not-found.png' alt='no-product'/>}
           {!this.state.products.length && <div class="loader">Loading...</div>}
 
           {productsList}
