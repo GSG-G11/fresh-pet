@@ -300,11 +300,6 @@ class ProductsList extends Component {
           isLogin={isLogin}
         />
         <PriceFilter priceRange={priceRange} handlePriceRange={this.handlePriceRange}/>
-        <section className='products-section'>
-          {this.state.filteredProducts.length === 0 && (
-            <h1>No Products Found</h1>
-          )}
-
 
         <section className="products-section" id="products">
           {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}

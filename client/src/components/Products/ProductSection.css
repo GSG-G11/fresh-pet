@@ -18,8 +18,8 @@
 .inputs-section input {
   border: none;
   border-bottom: 1px solid #ccc;
-  width: 14rem;
-  font-size: 0.8rem;
+  width: 200px;
+  font-size: 15px;
   padding: 0;
   height: 2.5rem;
   outline: none;
@@ -28,9 +28,9 @@
 .inputs-section select {
   border: none;
   border-bottom: 1px solid #ccc;
-  width: 14rem;
+  width: 200px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 15px;
   padding: 8px;
   border-radius: 25px;
   outline: gray;
@@ -52,7 +52,12 @@
 }
 @media (max-width: 768px) {
   .products-section {
-    margin-top: 7.2rem;
+    margin-top: 9.2rem;
+  }
+}
+@media (max-width: 576px) {
+  .products-section {
+    margin-top: 12.2rem;
   }
 }
 .card {

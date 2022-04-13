@@ -8,7 +8,7 @@ class Counter extends Component {
   };
   increase = () => {
     this.setState((prevState, { count }) => ({
-      count: prevState.count + 1
+      count: prevState.count + 1,
     }));
   };
   decrease =  () => {
