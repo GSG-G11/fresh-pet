@@ -169,6 +169,8 @@ class App extends Component {
                 <ProductDetails
                   alertSuccess={this.alertSuccess}
                   alertError={this.alertError}
+                  updateNumberCartProduct={this.updateNumberCartProduct}
+                  updateCartProduct={this.updateCartProduct}
                   {...props}
                 />
               )}
