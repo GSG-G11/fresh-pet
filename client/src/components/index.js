@@ -4,6 +4,7 @@ import { LandingImage, Header } from './Header';
 import { NotFound } from './NotFound';
 import { Cart } from './Cart';
 import { AddToCard, Delete } from './Buttons';
+import { Footer } from './Footer';
 
 import {
   PetFilter,
@@ -29,4 +30,5 @@ export {
   AddToCard,
   Delete,
   LoginForm,
+  Footer,
 };
