@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100&family=Josefin+Sans:wght@200;300;500;600;700&display=swap');
 :root{
   --orange: #FF5423,
   --light-orange: #fb6f59,
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 3.2rem;
-
+  gap: 10px;
 }
 .logo-img {
   width: 8.2rem;
@@ -26,16 +27,17 @@
 
 }
 .signin-btn{
-background-color: #FF5423;
-padding: 0.6rem 1.2rem;
-border-radius: 25px;
-border: none;
-color: #fff ;
-outline: none;
-font-weight: 600;
-transition: all 1s ease-in-out;
-  margin: auto 64px;
-
+  background-color: #FF5423;
+  padding: 9px 23px;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  outline: none;
+  font-weight: 600;
+  transition: all 1s ease-in-out;
+  width: 100px;
+  font-size: 15px;
+  margin: auto;
 }
  .icons{
          text-align: center;
@@ -43,7 +45,6 @@ transition: all 1s ease-in-out;
     align-items: center;
     position: relative;
     color: #766a6a;
-    background-color: #FF5423;
     padding: 0.4rem 1.3rem;
     border-radius: 50%;
     cursor: pointer;
@@ -62,21 +63,24 @@ transition: all 1s ease-in-out;
 
 }
 .icons .product-num{
-    position: absolute;
-    top: 0rem;
-    left: 3rem;
-    background-color: #956464;
-    color: #ffffff;
-    font-size: 0.8rem;
-    width: 1.3rem;
-    height: 1.3rem;
-    border-radius: 50%;
-    text-align: center;
+  position: absolute;
+  top: 0rem;
+  left: 3rem;
+  background-color: #ff543d;
+  color: #ffffff;
+  font-size: 13px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-icon {
   color: white;
-  font-size: 1.2rem;
+  font-size: 24px;
 }
 
 .bone-img {
@@ -118,17 +122,44 @@ transition: all 1s ease-in-out;
   position: absolute;
   top: 45%;
   padding-left: 4.8rem;
-  font-size: 5.2rem;
+  font-size: 3rem;
   transform: translateY(-50%);
   color: white;
   letter-spacing: 1.8px;
-  font-family: 'Beau Rivage', cursive;
+  font-family: 'Josefin Sans', sans-serif;
   animation: fadeIn 1.5s ease-in-out;
 }
-
+.header-image-icon{
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 10px;
+  animation: changeImage 10s ease-in-out both infinite;
+}
+@keyframes changeImage {
+  0% {
+    background-image: url('/public/img/cat-icon.png');
+  }
+  20% {
+    background-image: url('/public/img/dog-icon.png');
+  }
+  40% {
+    background-image: url('/public/img/horse-icon.png');
+  }
+  60% {
+    background-image: url('/public/img/fish-icon.png');
+  }
+  80% {
+    background-image: url('/public/img/dove-icon.png');
+  }
+  100% {
+    background-image: url('/public/img/cat-icon.png');
+  }
+}
 .icons-card{
   display: flex;
-  gap: 1rem;
+  gap: 10px;
 }
 
 
@@ -146,7 +177,7 @@ transition: all 1s ease-in-out;
   }
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   html {
     font-size: 80.5%;
   }
@@ -157,7 +188,7 @@ transition: all 1s ease-in-out;
   .slang {
     font-size: 3.2rem;
   }
-}
+} */
   
 @media screen and (max-width: 768px){
   html {
@@ -175,7 +206,7 @@ transition: all 1s ease-in-out;
   }
 }
 
-@media screen and (max-width: 520px){
+/* @media screen and (max-width: 520px){
   html {
     font-size: 60.5%;
   }
@@ -188,4 +219,4 @@ transition: all 1s ease-in-out;
     font-size: 1rem;
     padding: 0.2rem 1rem;
   }
-}
+} */

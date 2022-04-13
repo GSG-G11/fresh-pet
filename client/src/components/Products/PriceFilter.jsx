@@ -11,15 +11,13 @@ const PriceFilter = ({priceRange, handlePriceRange}) => {
           <input type="range" min="0" max="200" onChange={(e) => handlePriceRange(priceRange[0], +e.target.value)} value={priceRange[1]} id="upper"/>
         </div>
         <div class="price-wrap">
-          <span class="price-title">FILTER</span>
           <div class="price-wrap-1">
             <input id="one" value={priceRange[0]}/>
-            <label for="one">$</label>
+            <span>$</span>
           </div>
-          <div class="price-wrap_line">-</div>
           <div class="price-wrap-2">
             <input id="two" value={priceRange[1]}/>
-            <label for="two">$</label>
+            <span>$</span>
           </div>
         </div>
       </fieldset> 
