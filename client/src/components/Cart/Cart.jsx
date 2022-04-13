@@ -2,25 +2,20 @@ import React, { Component } from 'react';
 import Counter from './Counter';
 import './cartStyle.css';
 
-
-class Cart extends Component{
+class Cart extends Component {
   state = {
     totalPrice: 0,
   };
 
   updateTotalPrice = (price) => {
-    this.setState({totalPrice:price});
-  }
+    this.setState({ totalPrice: price });
+  };
 
-  // CheckOut = () => {
-  //   this.setState({totalPrice:0});
-  //   localStorage.setItem('products', JSON.stringify([]));
-  // }
-
-render() {
+  render() {
     const { totalPrice } = this.state;
+    const { cartProduct, checkOut } = this.props;
     const products =
-      this.props.cartProduct ?? JSON.parse(localStorage.getItem('products'));
+      cartProduct ?? JSON.parse(localStorage.getItem('products'));
     return (
       <>
         <div className='container'>
@@ -37,19 +32,24 @@ render() {
                   />
                 ))
               ) : (
-                <h1>No Products Found</h1>
+                <h1 className='cart-not__found'>
+                  You have no products in your cart
+                </h1>
               )}
             </ul>
-            <div className='total-cost-holder'>
-              <h3 className='total-cost'>
-                Total Cost: <span>${totalPrice.toFixed(2)}</span>
-              </h3>
-            </div>
-              {/* <button
-                  className="delete-btn"
-                  onClick={() => this.CheckOut()}>
+            {products.length !== 0 && (
+              <div className='total-cost-holder'>
+                <h3 className='total-cost'>
+                  Total Cost: <span>${totalPrice.toFixed(2)}</span>
+                </h3>
+                <button
+                  title='Check Out'
+                  className='checkout-btn'
+                  onClick={checkOut}>
                   Check out
-                </button> */}
+                </button>
+              </div>
+            )}
           </section>
         </div>
       </>
