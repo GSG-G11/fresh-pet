@@ -1,8 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Axios from 'axios';
 import PriceFilter from './PriceFilter';
 
-import {Modal, CreateProduct, UpdateProduct, Product, ProductsFilter, PetFilter} from '..';
+import {
+  Modal,
+  CreateProduct,
+  UpdateProduct,
+  Product,
+  ProductsFilter,
+  PetFilter,
+} from '..';
 
 import './ProductSection.css';
 
@@ -34,13 +41,14 @@ class ProductsList extends Component {
       .then(data => this.setState({products: data.products}));
     }
 
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.products !== this.state.products) {
-      this.setState({filteredProducts: this.state.products});
+      this.setState({ filteredProducts: this.state.products });
     }
 
     if (prevState.filteredProducts !== this.state.filteredProducts) {
-      this.setState({filteredProducts: this.state.filteredProducts});
+      this.setState({ filteredProducts: this.state.filteredProducts });
     }
   }
 
@@ -91,14 +99,14 @@ class ProductsList extends Component {
     // });
     // this.setState({filteredProducts});
   };
-  deleteHandler = id => {
-    const {products} = this.state;
-    const {alertSuccess} = this.props;
-    const filteredProducts = products.filter(product => product.id !== id);
-    alertSuccess('Product Deleted Successfully');
-    this.setState({products: filteredProducts});
-  };
 
+  deleteHandler = (id) => {
+    const { products } = this.state;
+    const { alertSuccess } = this.props;
+    const filteredProducts = products.filter((product) => product.id !== id);
+    alertSuccess('Product Deleted Successfully');
+    this.setState({ products: filteredProducts });
+  };
 
   clearInputs = () => {
     this.setState({
@@ -116,18 +124,18 @@ class ProductsList extends Component {
     });
   };
 
-  closeModalHandler = isOpen => {
+  closeModalHandler = (isOpen) => {
     this.setState(
       {
         isOpen: !isOpen,
       },
       () => {
         this.clearInputs();
-      }
+      },
     );
   };
 
-  openModalHandler = componentName => {
+  openModalHandler = (componentName) => {
     this.setState({
       isOpen: !this.state.isOpen,
       componentName: componentName,
@@ -136,7 +144,7 @@ class ProductsList extends Component {
 
   openEditModalHandler = (
     componentName,
-    {id, name, price, image, description, pet_category, sub_category}
+    { id, name, price, image, description, pet_category, sub_category },
   ) => {
     this.setState({
       isOpen: !this.state.isOpen,
@@ -153,18 +161,18 @@ class ProductsList extends Component {
     });
   };
 
-  handleChange = event => {
-    const {formInput} = this.state;
-    const {name, value} = event.target;
-    this.setState({formInput: {...formInput, [name]: value}});
+  handleChange = (event) => {
+    const { formInput } = this.state;
+    const { name, value } = event.target;
+    this.setState({ formInput: { ...formInput, [name]: value } });
   };
 
   handleCreateProduct = () => {
     const {
       products,
-      formInput: {name, description, petCategory, subCategory, price, image},
+      formInput: { name, description, petCategory, subCategory, price, image },
     } = this.state;
-    const {alertSuccess, alertError} = this.props;
+    const { alertSuccess, alertError } = this.props;
     let cloneProducts = [...products];
     if (
       name.length &&
@@ -182,7 +190,7 @@ class ProductsList extends Component {
         price,
         image,
       })
-        .then(({data: {data: newProduct}}) => {
+        .then(({ data: { data: newProduct } }) => {
           alertSuccess('Product Created Successfully');
           cloneProducts = [newProduct, ...products];
           this.setState({
@@ -203,10 +211,10 @@ class ProductsList extends Component {
   handleUpdateProduct = () => {
     const {
       products,
-      formInput: {name, description, petCategory, subCategory, price, image},
+      formInput: { name, description, petCategory, subCategory, price, image },
       productId,
     } = this.state;
-    const {alertSuccess, alertError} = this.props;
+    const { alertSuccess, alertError } = this.props;
     let cloneProducts = [...products];
 
     if (
@@ -225,8 +233,10 @@ class ProductsList extends Component {
         price,
         image,
       })
-        .then(({data: {data}}) => {
-          const updateProducts = cloneProducts.find(({id}) => productId === id);
+        .then(({ data: { data } }) => {
+          const updateProducts = cloneProducts.find(
+            ({ id }) => productId === id,
+          );
           updateProducts.name = name;
           updateProducts.description = description;
           updateProducts.image = image;
@@ -274,8 +284,7 @@ class ProductsList extends Component {
               && product.name.toLowerCase().includes(searchValue)
     })
 
-    const productsList = filteredProducts.map(product => (
-
+    const productsList = filteredProducts.map((product) => (
       <Product
         key={product.id}
         product={product}
@@ -289,7 +298,7 @@ class ProductsList extends Component {
       />
     ));
 
-    const componentsLookUp = {CreateProduct, UpdateProduct};
+    const componentsLookUp = { CreateProduct, UpdateProduct };
     let renderComponent;
     if (componentName) {
       const SelectedComponent = componentsLookUp[componentName];
@@ -307,7 +316,7 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className="container">
+      <div className='container'>
         <PetFilter handlePetSelection={this.handlePetSelection} />
         <ProductsFilter
           handleSearch={this.handleSearch}
@@ -320,6 +329,7 @@ class ProductsList extends Component {
         <section className="products-section" id="products">
           {this.state.filteredProducts.length === 0 && <h1>No Products Found</h1>}
           {!this.state.products.length && <div class="loader">Loading...</div>}
+
 
           {productsList}
         </section>
