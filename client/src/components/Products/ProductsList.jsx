@@ -11,6 +11,9 @@ class ProductsList extends Component {
     products: [],
     filteredProducts: [],
     priceRange: [0, 200],
+    searchValue: '',
+    selectValue: 'all',
+    petSelect: 'all',
     isOpen: false,
     componentName: '',
     formInput: {
@@ -29,7 +32,7 @@ class ProductsList extends Component {
     fetch('/api/v1/products')
       .then(res => res.json())
       .then(data => this.setState({products: data.products}));
-  }
+    }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.products !== this.state.products) {
@@ -43,27 +46,51 @@ class ProductsList extends Component {
 
   handlePriceRange = (min, max) => {
     this.setState({priceRange: [min, max]})
-    const { products } = this.state;
-    const filteredProducts = products.filter((product) => {
-      return product.price >= min && product.price <= max;
-    });
-    this.setState({ filteredProducts });
+    // this.setState({priceRange: [min, max]})
+    // const { products } = this.state;
+    // const filteredProducts = products.filter((product) => {
+    //   return product.price >= min && product.price <= max;
+    // });
+    // this.setState({ filteredProducts });
   }
 
 
   handlePetSelection = pet => {
-
-    if (pet === 'all') {
-      this.setState({filteredProducts: this.state.products});
-      return;
-    }
-    const {products} = this.state;
-    const filteredProducts = products.filter(product => {
-      return product.pet_category === pet;
-    });
-    this.setState({filteredProducts});
+    this.setState({petSelect: pet})
+    // if (pet === 'all') {
+    //   this.setState({filteredProducts: this.state.products});
+    //   return;
+    // }
+    // const {products} = this.state;
+    // const filteredProducts = products.filter(product => {
+    //   return product.pet_category === pet;
+    // });
+    // this.setState({filteredProducts});
   };
 
+  handleSearch = event => {
+    this.setState({searchValue: event.target.value.toLowerCase()})
+    // const searchValue = event.target.value.toLowerCase();
+    // const {products} = this.state;
+    // const filteredProducts = products.filter(product => {
+    //   return product.name.toLowerCase().includes(searchValue);
+    // });
+    // this.setState({filteredProducts});
+  };
+
+  handleSelect = event => {
+    this.setState({selectValue: event.target.value.toLowerCase()})
+    // const selectValue = event.target.value.toLowerCase();
+    // if (selectValue === 'all') {
+    //   this.setState({filteredProducts: this.state.products});
+    //   return;
+    // }
+    // const {products} = this.state;
+    // const filteredProducts = products.filter(product => {
+    //   return product.sub_category === selectValue;
+    // });
+    // this.setState({filteredProducts});
+  };
   deleteHandler = id => {
     const {products} = this.state;
     const {alertSuccess} = this.props;
@@ -72,27 +99,6 @@ class ProductsList extends Component {
     this.setState({products: filteredProducts});
   };
 
-  handleSearch = event => {
-    const searchValue = event.target.value.toLowerCase();
-    const {products} = this.state;
-    const filteredProducts = products.filter(product => {
-      return product.name.toLowerCase().includes(searchValue);
-    });
-    this.setState({filteredProducts});
-  };
-
-  handleSelect = event => {
-    const selectValue = event.target.value.toLowerCase();
-    if (selectValue === 'all') {
-      this.setState({filteredProducts: this.state.products});
-      return;
-    }
-    const {products} = this.state;
-    const filteredProducts = products.filter(product => {
-      return product.sub_category === selectValue;
-    });
-    this.setState({filteredProducts});
-  };
 
   clearInputs = () => {
     this.setState({
@@ -240,15 +246,19 @@ class ProductsList extends Component {
       this.clearInputs();
     }
   };
-
+  
   render() {
     const {
-      filteredProducts,
+      // filteredProducts,
+      products,
       isOpen,
       componentName,
       hasErrorValidation,
       formInput,
       priceRange,
+      searchValue,
+      selectValue,
+      petSelect,
     } = this.state;
     const {
       alertSuccess,
@@ -257,6 +267,12 @@ class ProductsList extends Component {
       updateCartProduct,
       isLogin,
     } = this.props;
+    const filteredProducts = products.filter((product) => {
+      return product.price >= priceRange[0] && product.price <= priceRange[1]
+              && (petSelect === 'all' || product.pet_category === petSelect)
+              && (selectValue === 'all' || product.sub_category === selectValue)
+              && product.name.toLowerCase().includes(searchValue)
+    })
 
     const productsList = filteredProducts.map(product => (
 
