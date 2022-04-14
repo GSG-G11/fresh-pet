@@ -61,7 +61,7 @@ class ProductDetails extends Component {
     );
     return (
       <div>
-        {!this.state.singleProduct && <div class='loader'>Loading...</div>}
+        {!this.state.singleProduct && <div className='loader'>Loading...</div>}
         {this.state.singleProduct && productDetails}
       </div>
     );

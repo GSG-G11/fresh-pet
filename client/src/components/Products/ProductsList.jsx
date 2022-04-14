@@ -17,7 +17,7 @@ class ProductsList extends Component {
   state = {
     products: [],
     filteredProducts: [],
-    priceRange: [0, 200],
+    priceRange: [0, 999999],
     searchValue: '',
     selectValue: 'all',
     petSelect: 'all',
@@ -36,11 +36,15 @@ class ProductsList extends Component {
   };
 
   componentDidMount() {
-    fetch('/api/v1/products')
-      .then(res => res.json())
-      .then(data => this.setState({products: data.products}));
-    }
-
+    Axios.get('/api/v1/products').then(({ data: { products } }) => {
+      this.setState({ products: products });
+      const max = Math.max.apply(
+        Math,
+        products.map(({ price }) => price),
+      );
+      this.setState({ priceRange: [0, max] });
+    });
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.products !== this.state.products) {
@@ -53,51 +57,19 @@ class ProductsList extends Component {
   }
 
   handlePriceRange = (min, max) => {
-    this.setState({priceRange: [min, max]})
-    // this.setState({priceRange: [min, max]})
-    // const { products } = this.state;
-    // const filteredProducts = products.filter((product) => {
-    //   return product.price >= min && product.price <= max;
-    // });
-    // this.setState({ filteredProducts });
-  }
-
-
-  handlePetSelection = pet => {
-    this.setState({petSelect: pet})
-    // if (pet === 'all') {
-    //   this.setState({filteredProducts: this.state.products});
-    //   return;
-    // }
-    // const {products} = this.state;
-    // const filteredProducts = products.filter(product => {
-    //   return product.pet_category === pet;
-    // });
-    // this.setState({filteredProducts});
+    this.setState({ priceRange: [min, max] });
   };
 
-  handleSearch = event => {
-    this.setState({searchValue: event.target.value.toLowerCase()})
-    // const searchValue = event.target.value.toLowerCase();
-    // const {products} = this.state;
-    // const filteredProducts = products.filter(product => {
-    //   return product.name.toLowerCase().includes(searchValue);
-    // });
-    // this.setState({filteredProducts});
+  handlePetSelection = (pet) => {
+    this.setState({ petSelect: pet });
   };
 
-  handleSelect = event => {
-    this.setState({selectValue: event.target.value.toLowerCase()})
-    // const selectValue = event.target.value.toLowerCase();
-    // if (selectValue === 'all') {
-    //   this.setState({filteredProducts: this.state.products});
-    //   return;
-    // }
-    // const {products} = this.state;
-    // const filteredProducts = products.filter(product => {
-    //   return product.sub_category === selectValue;
-    // });
-    // this.setState({filteredProducts});
+  handleSearch = (event) => {
+    this.setState({ searchValue: event.target.value.toLowerCase() });
+  };
+
+  handleSelect = (event) => {
+    this.setState({ selectValue: event.target.value.toLowerCase() });
   };
 
   deleteHandler = (id) => {
@@ -256,7 +228,7 @@ class ProductsList extends Component {
       this.clearInputs();
     }
   };
-  
+
   render() {
     const {
       // filteredProducts,
@@ -278,13 +250,16 @@ class ProductsList extends Component {
       isLogin,
     } = this.props;
     const filteredProducts = products.filter((product) => {
-      return product.price >= priceRange[0] && product.price <= priceRange[1]
-              && (petSelect === 'all' || product.pet_category === petSelect)
-              && (selectValue === 'all' || product.sub_category === selectValue)
-              && product.name.toLowerCase().includes(searchValue)
-    })
+      return (
+        product.price >= priceRange[0] &&
+        product.price <= priceRange[1] &&
+        (petSelect === 'all' || product.pet_category === petSelect) &&
+        (selectValue === 'all' || product.sub_category === selectValue) &&
+        product.name.toLowerCase().includes(searchValue)
+      );
+    });
 
-    const productsList = filteredProducts.map(product => (
+    const productsList = filteredProducts.map((product) => (
       <Product
         key={product.id}
         product={product}
@@ -324,11 +299,17 @@ class ProductsList extends Component {
           openModalHandler={this.openModalHandler}
           isLogin={isLogin}
         />
-        <PriceFilter priceRange={priceRange} handlePriceRange={this.handlePriceRange}/>
+        <PriceFilter
+          products={products}
+          priceRange={priceRange}
+          handlePriceRange={this.handlePriceRange}
+        />
 
-        <section className="products-section" id="products">
-          {filteredProducts.length === 0 && <img src='../img/not-found.png' alt='no-product'/>}
-          {!this.state.products.length && <div class="loader">Loading...</div>}
+        <section className='products-section' id='products'>
+          {filteredProducts.length === 0 && (
+            <img src='../img/not-found.png' alt='no-product' />
+          )}
+          {!this.state.products.length && <div className='loader'>Loading...</div>}
           {productsList}
         </section>
 
